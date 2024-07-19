@@ -5,22 +5,47 @@ function Menu() {
   const [menuIsHovered, setMenuIsHovered] = useState<boolean>(false);
   const [showButton, setShowButton] = useState<boolean>(false);
   const [animateButton, setAnimateButton] = useState<boolean>(false);
-  //   const [menuFinishAnimation, setMenuFinishAnimation] = useState<boolean>(true);
-  console.log(menuIsOpen, "menuIsOpen", showButton, "showButton");
+  const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
+  console.log(
+    menuShouldChange,
+    "menuShouldChange",
+    menuIsOpen,
+    "menuIsOpen",
+    showButton,
+    "showButton",
+    animateButton,
+    "animateButton"
+  );
+
   useEffect(() => {
-    if (menuIsOpen) {
+    //animation des boutons apres ouverture du menu
+    if (menuShouldChange) {
+      setMenuIsOpen(true);
       const timeout = setTimeout(() => {
         setShowButton(true);
         setTimeout(() => {
           setAnimateButton(true);
         }, 100);
       }, 100);
-      return () => clearTimeout(timeout);
+      return () => {
+        clearTimeout(timeout);
+      };
     } else {
-      setShowButton(false);
+      //fermeture du menu apres animation des boutons
       setAnimateButton(false);
+      const timeout = setTimeout(() => {
+        setShowButton(false);
+        setMenuIsOpen(false);
+      }, 900);
+      return () => {
+        clearTimeout(timeout);
+      };
     }
-  }, [menuIsOpen]);
+  }, [menuShouldChange]);
+
+  // quand je clique sur le bouton pour fermer le menu,
+  //   je dois faire en sorte que le boutton fasse son animation
+  //   et qu'ensuite le menu se ferme
 
   return (
     <div className="relative h-screen w-screen flex">
@@ -39,7 +64,7 @@ function Menu() {
         className={`absolute top-4 left-4 z-20 w-20 h-20 rounded-full flex flex-col gap-2 items-center justify-center hover:scale-125  transition-all duration-100 ease-in-out ${
           menuIsOpen ? "" : "hover:scale-125"
         }`}
-        onClick={() => setMenuIsOpen(!menuIsOpen)}
+        onClick={() => setMenuShouldChange(!menuShouldChange)}
         onMouseEnter={() => setMenuIsHovered(true)}
         onMouseLeave={() => setMenuIsHovered(false)}
       >
@@ -66,32 +91,38 @@ function Menu() {
         {showButton ? (
           <div className="flex flex-col gap-6">
             <button
-              className={`border-2 rounded-xl p-2 border-red-400 hover:scale-110 transform transition-all duration-1000 delay-200 ${
+              className={`border-2 rounded-xl p-2 border-red-400 hover:scale-110 transition duration-700 ${
                 animateButton
-                  ? "translate-y-8 opacity-100"
-                  : "-translate-y-8 opacity-0"
+                  ? "delay-300 translate-y-8 opacity-100"
+                  : "delay-0 -translate-y-8 opacity-0"
               }`}
-              //   style={{ transitionDelay: "400ms" }}
             >
               Menu
             </button>
             <button
-              className={`border-2 rounded-xl p-2 border-blue-400 hover:scale-110 transition duration-1000 delay-100	 ${
+              className={`border-2 rounded-xl p-2 border-blue-400 hover:scale-110 transition duration-700 ${
                 animateButton
-                  ? "translate-y-8 opacity-100"
-                  : "-translate-y-8 opacity-0"
+                  ? "delay-200 translate-y-8 opacity-100"
+                  : "delay-100 -translate-y-8 opacity-0"
               }`}
-              //   style={{ transitionDelay: "200ms" }}
             >
               Accueil
             </button>
             <button
-              className={`border-2 rounded-xl p-2 border-yellow-400 hover:scale-110 transition duration-1000  delay-0	${
+              className={`border-2 rounded-xl p-2 border-yellow-400 hover:scale-110 transition duration-700 ${
                 animateButton
-                  ? "translate-y-8 opacity-100"
-                  : "-translate-y-8 opacity-0"
+                  ? "delay-100 translate-y-8 opacity-100"
+                  : "delay-200 -translate-y-8 opacity-0"
               }`}
-              //   style={{ transitionDelay: "0ms" }}
+            >
+              Projets
+            </button>
+            <button
+              className={`border-2 rounded-xl p-2 border-purple-400 hover:scale-110 transition duration-700 ${
+                animateButton
+                  ? "delay-0 translate-y-8 opacity-100"
+                  : "delay-300 -translate-y-8 opacity-0"
+              }`}
             >
               Projets
             </button>
