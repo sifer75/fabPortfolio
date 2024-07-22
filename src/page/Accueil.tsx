@@ -56,7 +56,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const { current: cyclingNode } = cyclingNodeRef;
     if (cyclingNode === null) return;
 
-    const computedStyle = getComputedStyle(cyclingNode);
+    const computedStyle = window.getComputedStyle(cyclingNode);
     const currentLeft = parseFloat(computedStyle.left);
 
     const containerWidth = cyclingNode.getBoundingClientRect().width;
@@ -77,7 +77,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const { current: cyclingNode } = cyclingNodeRef;
     if (cyclingNode === null) return;
 
-    const computedStyle = getComputedStyle(cyclingNode);
+    const computedStyle = window.getComputedStyle(cyclingNode);
     const currentLeft = parseFloat(computedStyle.left);
 
     const containerWidth = cyclingNode.getBoundingClientRect().width;
