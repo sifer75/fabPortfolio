@@ -60,10 +60,10 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const currentLeft = parseFloat(computedStyle.left);
 
     const containerWidth = cyclingNode.getBoundingClientRect().width;
-    const distanceRemaining = containerWidth / 2 + currentLeft;
+    const remainingDistance = containerWidth / 2 + currentLeft;
 
     const remainingTime =
-      (distanceRemaining / (containerWidth / 2)) * SLOW_CYCLE_DURATION;
+      (remainingDistance / (containerWidth / 2)) * SLOW_CYCLE_DURATION;
 
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
@@ -81,10 +81,10 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const currentLeft = parseFloat(computedStyle.left);
 
     const containerWidth = cyclingNode.getBoundingClientRect().width;
-    const distanceRemaining = containerWidth / 2 + currentLeft;
+    const remainingDistance = containerWidth / 2 + currentLeft;
 
     const remainingTime =
-      (distanceRemaining / (containerWidth / 2)) * FULL_CYCLE_DURATION;
+      (remainingDistance / (containerWidth / 2)) * FULL_CYCLE_DURATION;
 
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
