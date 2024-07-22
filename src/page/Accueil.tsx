@@ -100,11 +100,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const { current: cyclingNode } = cyclingNodeRef;
     if (cyclingNode === null) return;
 
-    if (cyclingNodeIsHovered) {
-      slowdownCycle();
-    } else {
-      restoreCycleSpeed();
-    }
+    cyclingNodeIsHovered ? slowdownCycle() : restoreCycleSpeed();
   }, [cyclingNodeIsHovered, slowdownCycle, restoreCycleSpeed]);
 
   useEffect(() => {
