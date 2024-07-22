@@ -4,21 +4,26 @@ import type { RefObject, Dispatch, SetStateAction } from "react";
 import type { Id } from "../types/Number";
 import type { OneOrMany } from "../types/Utils";
 
+const sections = {
+  home: "Accueil",
+  portfolio: "Portfolio",
+  skills: "Compétences",
+  contact: "Joindre",
+} as const;
+
 interface MenuProps {
   menuShouldChange: boolean;
   setMenuShouldChange: Dispatch<SetStateAction<boolean>>;
-  sectionRef: {
-    Accueil: RefObject<HTMLDivElement>;
-    Portfolio: RefObject<HTMLDivElement>;
-    Compétences: RefObject<HTMLDivElement>;
-    Joindre: RefObject<HTMLDivElement>;
-  };
+  sectionsRefs: Record<
+    (typeof sections)[keyof typeof sections],
+    RefObject<HTMLDivElement>
+  >;
 }
 
 function Menu({
   menuShouldChange,
   setMenuShouldChange,
-  sectionRef,
+  sectionsRefs,
 }: MenuProps) {
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const [menuIsHovered, setMenuIsHovered] = useState<boolean>(false);
@@ -143,9 +148,9 @@ function Menu({
                   ? "delay-300 translate-y-8 opacity-100"
                   : "delay-0 -translate-y-8 opacity-0"
               }`}
-              onClick={() => scrollToSection(sectionRef.Accueil)}
+              onClick={() => scrollToSection(sectionsRefs.Accueil)}
             >
-              Accueil
+              {sections.home}
             </button>
 
             <button
@@ -154,9 +159,9 @@ function Menu({
                   ? "delay-200 translate-y-8 opacity-100"
                   : "delay-100 -translate-y-8 opacity-0"
               }`}
-              onClick={() => scrollToSection(sectionRef.Compétences)}
+              onClick={() => scrollToSection(sectionsRefs.Compétences)}
             >
-              Compétences
+              {sections.skills}
             </button>
 
             <button
@@ -165,9 +170,9 @@ function Menu({
                   ? "delay-100 translate-y-8 opacity-100"
                   : "delay-200 -translate-y-8 opacity-0"
               }`}
-              onClick={() => scrollToSection(sectionRef.Portfolio)}
+              onClick={() => scrollToSection(sectionsRefs.Portfolio)}
             >
-              Portfolio
+              {sections.portfolio}
             </button>
 
             <button
@@ -176,9 +181,9 @@ function Menu({
                   ? "delay-0 translate-y-8 opacity-100"
                   : "delay-300 -translate-y-8 opacity-0"
               }`}
-              onClick={() => scrollToSection(sectionRef.Joindre)}
+              onClick={() => scrollToSection(sectionsRefs.Joindre)}
             >
-              Joindre
+              {sections.contact}
             </button>
           </div>
         )}

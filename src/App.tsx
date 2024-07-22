@@ -22,7 +22,7 @@ function App() {
       <Menu
         menuShouldChange={menuShouldChange}
         setMenuShouldChange={setMenuShouldChange}
-        sectionRef={{
+        sectionsRefs={{
           Accueil: accueilRef,
           Portfolio: portfolioRef,
           Compétences: competencesRef,
