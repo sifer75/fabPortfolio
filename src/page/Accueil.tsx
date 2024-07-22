@@ -28,20 +28,23 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const container = containerRef.current;
     if (container === null) return;
 
-    const cycle = () =>
+    const moveLeft = () =>
       (container.style.left =
         "-" + container.getBoundingClientRect().width / 2 + "px");
 
-    const handleTransitionEnd = () => {
+    const cycle = () => {
       container.style.transition = "none";
       container.style.left = "0";
       container.offsetHeight;
       container.style.transition = "";
-      cycle();
+
+      moveLeft();
     };
 
+    const handleTransitionEnd = () => cycle();
+
     container.addEventListener("transitionend", handleTransitionEnd);
-    cycle();
+    moveLeft();
 
     return () =>
       container.removeEventListener("transitionend", handleTransitionEnd);
