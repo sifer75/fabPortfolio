@@ -111,7 +111,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
   return (
     <div className="h-screen flex flex-col pt-28 px-10">
       <div
-        className={`w-[422px] ${
+        className={`max-w-[422px] ${
           menuShouldChange
             ? "transition duration-500 delay-100 translate-x-60"
             : "transition duration-1000 delay-1000 translate-x-0"

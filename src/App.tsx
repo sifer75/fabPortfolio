@@ -15,12 +15,8 @@ function App() {
   const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
 
   return (
-    <div
-      className="w-screen"
-      style={{
-        background:
-          "linear-gradient(180deg, rgba(0,70,255,1) 0%, rgba(0,155,255,1) 100%)",
-      }}
+    <main
+      className="w-screen bg-gradient-to-t from-blue-600 to-blue-500"
       ref={accueilRef}
     >
       <Menu
@@ -35,7 +31,7 @@ function App() {
       />
       <Accueil menuShouldChange={menuShouldChange} />
       <Competences competencesRef={competencesRef} />
-    </div>
+    </main>
   );
 }
 

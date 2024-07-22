@@ -62,7 +62,7 @@ function Menu({
   };
 
   return (
-    <div className="h-full w-max flex fixed z-10">
+    <aside className="h-full w-max flex fixed z-10">
       {/* menu blanc */}
       <div
         className={`absolute top-4 left-4 z-10 transition-all duration-500 ease-in-out bg-white ${
@@ -72,7 +72,7 @@ function Menu({
                 menuIsHovered ? "scale-125 shadow-2xl" : "scale-100"
               }`
         }`}
-      ></div>
+      />
 
       {/* barre noir du menu */}
       <div
@@ -87,19 +87,21 @@ function Menu({
           className={`bg-black w-8 h-1 transform transition-transform duration-150 ${
             menuIsOpen ? "rotate-45 translate-y-2.5" : "rotate-0 translate-y-0 "
           }`}
-        ></div>
+        />
+
         <div
           className={`bg-black w-8 h-1 transition-opacity duration-100 ${
             menuIsOpen ? "opacity-0" : "opacity-100"
           }`}
-        ></div>
+        />
+
         <div
           className={`bg-black w-8 h-1 transform transition-transform duration-150 ${
             menuIsOpen
               ? "-rotate-45 -translate-y-2.5"
               : "rotate-0 translate-y-0"
           }`}
-        ></div>
+        />
       </div>
 
       {/* boutton de sélection */}
@@ -154,7 +156,7 @@ function Menu({
           </div>
         ) : null}
       </div>
-    </div>
+    </aside>
   );
 }
 
