@@ -15,12 +15,3 @@
   font-weight: normal;
   font-style: normal;
 }
-
-.cycle-x {
-  position: relative;
-  left: 0;
-
-  transition-property: left;
-  transition-duration: 10s;
-  transition-timing-function: linear;
-}
