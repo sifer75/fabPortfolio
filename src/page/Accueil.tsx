@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Nullable } from "../types/Utils";
+
+import type { MaybeNull } from "../types/Utils";
 
 interface AccueilProps {
   menuShouldChange: boolean;
@@ -7,6 +8,9 @@ interface AccueilProps {
 
 const ME = ["Taupin", "Fabien"] as const;
 const BIG_IDEAS = ["WEB", "DEVELOPER", "FULL STACK"] as const;
+
+const WHO_AM_I = ME.join("\n");
+const WHAT_I_DO = BIG_IDEAS.join("\n");
 
 const softSkills = [
   "autodidacte",
@@ -25,7 +29,7 @@ const SLOW_CYCLE_DURATION = FULL_CYCLE_DURATION * 2;
 function Accueil({ menuShouldChange }: AccueilProps) {
   const cyclingNodeRef = useRef<HTMLDivElement>(null);
   const [cyclingNodeIsHovered, setCyclingNodeIsHovered] =
-    useState<Nullable<boolean>>(null);
+    useState<MaybeNull<boolean>>(null);
 
   const moveLeft = useCallback(() => {
     const { current: cyclingNode } = cyclingNodeRef;
@@ -110,14 +114,14 @@ function Accueil({ menuShouldChange }: AccueilProps) {
   return (
     <div className="h-screen flex flex-col pt-28 px-10">
       <div
-        className={`w-[422px] ${
+        className={`max-w-[422px] ${
           menuShouldChange
             ? "transition duration-500 delay-100 translate-x-60"
             : "transition duration-1000 delay-1000 translate-x-0"
         }`}
       >
         <h1 className="text-9xl font-Merich w-fit text-yellow-100 pb-5">
-          {ME.join("\n")}
+          {WHO_AM_I}
         </h1>
 
         <div
@@ -144,7 +148,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
 
       <div className="flex ml-auto flex-col text-right">
         <h2 className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100 max-w-[9ch]">
-          {BIG_IDEAS.join("\n")}
+          {WHAT_I_DO}
         </h2>
       </div>
     </div>
