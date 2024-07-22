@@ -9,6 +9,9 @@ interface AccueilProps {
 const ME = ["Taupin", "Fabien"] as const;
 const BIG_IDEAS = ["WEB", "DEVELOPER", "FULL STACK"] as const;
 
+const WHO_AM_I = ME.join("\n");
+const WHAT_I_DO = BIG_IDEAS.join("\n");
+
 const softSkills = [
   "autodidacte",
   "polyvalent",
@@ -118,7 +121,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
         }`}
       >
         <h1 className="text-9xl font-Merich w-fit text-yellow-100 pb-5">
-          {ME.join("\n")}
+          {WHO_AM_I}
         </h1>
 
         <div
@@ -145,7 +148,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
 
       <div className="flex ml-auto flex-col text-right">
         <h2 className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100 max-w-[9ch]">
-          {BIG_IDEAS.join("\n")}
+          {WHAT_I_DO}
         </h2>
       </div>
     </div>
