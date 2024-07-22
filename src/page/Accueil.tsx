@@ -137,10 +137,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
           onMouseOver={() => setCyclingNodeIsHovered(true)}
           onMouseOut={() => setCyclingNodeIsHovered(false)}
         >
-          <div
-            className="flex animate-[defilement_10s_linear_infinite] hover:animate-[defilement_20s_linear_infinite] cycle-x z-10"
-            ref={cyclingNodeRef}
-          >
+          <div className="flex cycle-x z-10" ref={cyclingNodeRef}>
             {CYCLING_SCROLLING_TEXT_PARTS.map((v, k) => (
               <div className="flex mr-1 items-center h-7" key={k}>
                 <span className="font-Merich mr-1 text-white">{v}&nbsp;</span>
