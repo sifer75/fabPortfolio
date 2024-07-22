@@ -4,14 +4,13 @@ import Menu from "./component/Menu";
 import "./index.css";
 import Accueil from "./page/Accueil";
 import Competences from "./page/Competences";
-import { Nullable } from "./types/Utils";
 
 function App() {
-  // const subHeaderRef = useRef<Nullable<HTMLDivElement>>(null);
-  const accueilRef = useRef<Nullable<HTMLDivElement>>(null);
-  const portfolioRef = useRef<Nullable<HTMLDivElement>>(null);
-  const competencesRef = useRef<Nullable<HTMLDivElement>>(null);
-  const joindreRef = useRef<Nullable<HTMLDivElement>>(null);
+  // const subHeaderRef = useRef<HTMLDivElement>(null);
+  const accueilRef = useRef<HTMLDivElement>(null);
+  const portfolioRef = useRef<HTMLDivElement>(null);
+  const competencesRef = useRef<HTMLDivElement>(null);
+  const joindreRef = useRef<HTMLDivElement>(null);
   const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
 
   return (
