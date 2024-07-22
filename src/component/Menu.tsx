@@ -11,13 +11,17 @@ const sections = {
   contact: "Joindre",
 } as const;
 
+const buttonsSectionsClassnamesMatchers = {
+  home: "border-orange-400",
+  portfolio: "border-yellow-400",
+  skills: "border-green-400",
+  contact: "border-blue-400",
+} as const satisfies Record<Section, string>;
+
 interface MenuProps {
   menuShouldChange: boolean;
   setMenuShouldChange: Dispatch<SetStateAction<boolean>>;
-  sectionsRefs: Record<
-    (typeof sections)[keyof typeof sections],
-    RefObject<HTMLDivElement>
-  >;
+  sectionsRefs: Record<Section, RefObject<HTMLDivElement>>;
 }
 
 function Menu({
@@ -31,6 +35,36 @@ function Menu({
   const [animateButton, setAnimateButton] = useState<boolean>(false);
 
   const timeoutsIdsSetRef = useRef<Set<Id>>(new Set());
+
+  const scrollToSection = useCallback(
+    (section: RefObject<HTMLDivElement>) =>
+      section.current !== null &&
+      section.current.scrollIntoView({ behavior: "smooth" }),
+
+    []
+  );
+
+  const generateButtons = useCallback(() => {
+    return Object.keys(sections).map((k) => {
+      const k2 = k as Section;
+
+      return (
+        <button
+          key={k}
+          className={`border-2 rounded-xl p-2 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
+            buttonsSectionsClassnamesMatchers[k2]
+          } ${
+            animateButton
+              ? "delay-300 translate-y-8 opacity-100"
+              : "delay-0 -translate-y-8 opacity-0"
+          }`}
+          onClick={() => scrollToSection(sectionsRefs[k2])}
+        >
+          {sections[k2]}
+        </button>
+      );
+    });
+  }, [animateButton, scrollToSection, sectionsRefs]);
 
   const clearTimeouts = useCallback(
     (
@@ -89,10 +123,6 @@ function Menu({
     return dispose;
   }, [menuShouldChange, clearTimeouts]);
 
-  const scrollToSection = (section: RefObject<HTMLDivElement>) =>
-    section.current !== null &&
-    section.current.scrollIntoView({ behavior: "smooth" });
-
   return (
     <aside className="h-full w-max flex fixed z-10">
       {/* menu blanc */}
@@ -141,51 +171,7 @@ function Menu({
         className={`h-full z-30 w-auto ml-20 flex items-center justify-start `}
       >
         {showButton && (
-          <div className="flex flex-col gap-6">
-            <button
-              className={`border-2 rounded-xl p-2 border-orange-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-300 translate-y-8 opacity-100"
-                  : "delay-0 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionsRefs.Accueil)}
-            >
-              {sections.home}
-            </button>
-
-            <button
-              className={`border-2 rounded-xl p-2 border-yellow-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-200 translate-y-8 opacity-100"
-                  : "delay-100 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionsRefs.Compétences)}
-            >
-              {sections.skills}
-            </button>
-
-            <button
-              className={`border-2 rounded-xl p-2 border-green-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-100 translate-y-8 opacity-100"
-                  : "delay-200 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionsRefs.Portfolio)}
-            >
-              {sections.portfolio}
-            </button>
-
-            <button
-              className={`border-2 rounded-xl p-2 border-blue-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-0 translate-y-8 opacity-100"
-                  : "delay-300 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionsRefs.Joindre)}
-            >
-              {sections.contact}
-            </button>
-          </div>
+          <div className="flex flex-col gap-6">{generateButtons()}</div>
         )}
       </div>
     </aside>
@@ -193,3 +179,5 @@ function Menu({
 }
 
 export default Menu;
+
+type Section = keyof typeof sections;

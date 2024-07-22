@@ -23,10 +23,10 @@ function App() {
         menuShouldChange={menuShouldChange}
         setMenuShouldChange={setMenuShouldChange}
         sectionsRefs={{
-          Accueil: accueilRef,
-          Portfolio: portfolioRef,
-          Compétences: competencesRef,
-          Joindre: joindreRef,
+          home: accueilRef,
+          portfolio: portfolioRef,
+          skills: competencesRef,
+          contact: joindreRef,
         }}
       />
       <Accueil menuShouldChange={menuShouldChange} />
