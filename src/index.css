@@ -15,9 +15,3 @@
   font-weight: normal;
   font-style: normal;
 }
-
-.cycle {
-  position: relative;
-  left: 0;
-  transition: left 10s linear;
-}

@@ -1,78 +1,117 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Nullable } from "../types/Utils";
 
 interface AccueilProps {
   menuShouldChange: boolean;
 }
+
+const ME = ["Taupin", "Fabien"] as const;
+const BIG_IDEAS = ["WEB", "DEVELOPER", "FULL STACK"] as const;
+
+const SCROLLING_TEXT_PARTS = [
+  "autodidacte",
+  "polyvalent",
+  "persévérant",
+  "soucieux",
+  "efficace",
+  "passionné",
+] as const;
+
+const CYCLING_SCROLLING_TEXT_PARTS = [
+  ...SCROLLING_TEXT_PARTS,
+  ...SCROLLING_TEXT_PARTS,
+];
+
+const FULL_CYCLE_DURATION = 1e4; // NOTE: 10s
+const SLOW_CYCLE_DURATION = FULL_CYCLE_DURATION * 2;
+
 function Accueil({ menuShouldChange }: AccueilProps) {
-  const names = ["Taupin", "Fabien"] as const;
-  const title1 = ["WEB", "DEVELOPER", "FULL STACK"] as const;
-  // const [containerWidth, setContainerWidth] = useState<number>(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  // console.log(containerWidth);
-  const softSkills = [
-    "autodidacte",
-    "polyvalent",
-    "persévérant",
-    "soucieux",
-    "efficace",
-    "passionné",
-  ] as const;
-  // useEffect(() => {
-  //   const width = containerRef.current?.offsetWidth;
-  //   if (containerRef && width) {
-  //     setContainerWidth(width);
-  //   }
-  // }, [containerRef]);
-  //changer la position left en px, change le delay de transition,
-  // faire looper en attendant le transition end
-  // useEffect(() => {
-  //   const container = containerRef.current;
-  //   if (container) {
-  //     const handleMouseEnter = () => {
-  //       container.classList.remove("animate-defilement-slow");
-  //     };
+  const cyclingNodeRef = useRef<HTMLDivElement>(null);
+  const [cyclingNodeIsHovered, setCyclingNodeIsHovered] =
+    useState<Nullable<boolean>>(null);
 
-  //     const handleMouseLeave = () => {
-  //       container.classList.add("animate-defilement-slow");
-  //     };
+  const moveLeft = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
 
-  //     container.addEventListener("mouseenter", handleMouseEnter);
-  //     container.addEventListener("mouseleave", handleMouseLeave);
+    cyclingNode.style.left =
+      "-" + cyclingNode.getBoundingClientRect().width / 2 + "px";
+  }, []);
 
-  //     return () => {
-  //       container.removeEventListener("mouseenter", handleMouseEnter);
-  //       container.removeEventListener("mouseleave", handleMouseLeave);
-  //     };
-  //   }
-  // }, []);
+  const cycle = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    cyclingNode.style.transition = "none";
+    cyclingNode.style.left = "0";
+    cyclingNode.offsetHeight;
+    cyclingNode.style.transition = cyclingNodeIsHovered
+      ? `left ${SLOW_CYCLE_DURATION}ms linear`
+      : "";
+
+    moveLeft();
+  }, [moveLeft, cyclingNodeIsHovered]);
+
+  const slowdownCycle = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    const { left } = window.getComputedStyle(cyclingNode);
+    const currentLeft = parseFloat(left);
+
+    const containerWidth = cyclingNode.getBoundingClientRect().width;
+    const remainingDistance = containerWidth / 2 + currentLeft;
+
+    const remainingTime =
+      (remainingDistance / (containerWidth / 2)) * SLOW_CYCLE_DURATION;
+
+    cyclingNode.style.transition = "none";
+    cyclingNode.style.left = `${currentLeft}px`;
+    cyclingNode.offsetHeight;
+    cyclingNode.style.transition = `left ${remainingTime}ms linear`;
+
+    moveLeft();
+  }, [moveLeft]);
+
+  const restoreCycleSpeed = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    const { left } = window.getComputedStyle(cyclingNode);
+    const currentLeft = parseFloat(left);
+
+    const containerWidth = cyclingNode.getBoundingClientRect().width;
+    const remainingDistance = containerWidth / 2 + currentLeft;
+
+    const remainingTime =
+      (remainingDistance / (containerWidth / 2)) * FULL_CYCLE_DURATION;
+
+    cyclingNode.style.transition = "none";
+    cyclingNode.style.left = `${currentLeft}px`;
+    cyclingNode.offsetHeight;
+    cyclingNode.style.transition = `left ${remainingTime}ms linear`;
+
+    moveLeft();
+  }, [moveLeft]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      const cycle = () => {
-        container.style.left =
-          "-" + container.getBoundingClientRect().width / 2 + "px";
-      };
+    if (cyclingNodeIsHovered === null) return;
 
-      const handleTransitionEnd = () => {
-        container.style.transition = "none";
-        container.style.left = "0";
-        container.offsetHeight;
-        container.style.transition = "";
-        cycle();
-      };
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
 
-      container.addEventListener("transitionend", handleTransitionEnd);
-      cycle();
-      return () => {
-        container.removeEventListener("transitionend", handleTransitionEnd);
-      };
-    }
-  }, []);
+    cyclingNodeIsHovered ? slowdownCycle() : restoreCycleSpeed();
+  }, [cyclingNodeIsHovered, slowdownCycle, restoreCycleSpeed]);
+
+  useEffect(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    moveLeft();
+  }, [moveLeft]);
 
   return (
     <div className="h-screen flex flex-col pt-28 px-10">
-      {/* nom et prénom */}
       <div
         className={`w-[422px] ${
           menuShouldChange
@@ -80,40 +119,34 @@ function Accueil({ menuShouldChange }: AccueilProps) {
             : "transition duration-1000 delay-1000 translate-x-0"
         }`}
       >
-        {names.map((title: string, index: number) => (
-          <h1
-            className="text-9xl font-Merich w-fit text-yellow-100 pb-5"
-            key={index}
-          >
-            {title}
-          </h1>
-        ))}
-        <div className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden">
+        <h1 className="text-9xl font-Merich w-fit text-yellow-100 pb-5">
+          {ME.join("\n")}
+        </h1>
+
+        <div
+          className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden"
+          onMouseOver={() => setCyclingNodeIsHovered(true)}
+          onMouseOut={() => setCyclingNodeIsHovered(false)}
+          onTransitionEnd={cycle}
+        >
           <div
-            className="flex animate-[defilement_10s_linear_infinite] hover:animate-[defilement_20s_linear_infinite] cycle z-10"
-            ref={containerRef}
+            className="flex relative left-0 transition-[left] duration-[10s] ease-linear z-10"
+            ref={cyclingNodeRef}
           >
-            {[...softSkills, ...softSkills].map((softSkill, index: number) => (
-              <div className="flex mr-1 items-center h-7" key={index}>
-                <span className="font-Merich mr-1 text-white">
-                  {softSkill}&nbsp;
-                </span>
+            {CYCLING_SCROLLING_TEXT_PARTS.map((v, k) => (
+              <div className="flex mr-1 items-center h-7" key={k}>
+                <span className="font-Merich mr-1 text-white">{v}&nbsp;</span>
                 <span className="font-Kelsi text-yellow-100">X&nbsp;</span>
               </div>
             ))}
           </div>
         </div>
       </div>
-      {/* stack */}
-      <div className="flex w-full flex-col justify-between items-end">
-        {title1.map((title: string, index: number) => (
-          <h1
-            key={index}
-            className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100"
-          >
-            {title}
-          </h1>
-        ))}
+
+      <div className="flex ml-auto flex-col text-right">
+        <h2 className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100 max-w-[9ch]">
+          {BIG_IDEAS.join("\n")}
+        </h2>
       </div>
     </div>
   );

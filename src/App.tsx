@@ -6,11 +6,11 @@ import Accueil from "./page/Accueil";
 import Competences from "./page/Competences";
 
 function App() {
-  // const subHeaderRef = useRef<HTMLDivElement | null>(null);
-  const accueilRef = useRef<HTMLDivElement | null>(null);
-  const portfolioRef = useRef<HTMLDivElement | null>(null);
-  const compétencesRef = useRef<HTMLDivElement | null>(null);
-  const joindreRef = useRef<HTMLDivElement | null>(null);
+  // const subHeaderRef = useRef<HTMLDivElement>(null);
+  const accueilRef = useRef<HTMLDivElement>(null);
+  const portfolioRef = useRef<HTMLDivElement>(null);
+  const competencesRef = useRef<HTMLDivElement>(null);
+  const joindreRef = useRef<HTMLDivElement>(null);
   const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
 
   return (
@@ -28,12 +28,12 @@ function App() {
         sectionRef={{
           Accueil: accueilRef,
           Portfolio: portfolioRef,
-          Compétences: compétencesRef,
+          Compétences: competencesRef,
           Joindre: joindreRef,
         }}
       />
       <Accueil menuShouldChange={menuShouldChange} />
-      <Competences competencesRef={compétencesRef} />
+      <Competences competencesRef={competencesRef} />
     </div>
   );
 }
