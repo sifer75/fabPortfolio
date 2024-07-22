@@ -8,7 +8,7 @@ interface AccueilProps {
 const ME = ["Taupin", "Fabien"] as const;
 const BIG_IDEAS = ["WEB", "DEVELOPER", "FULL STACK"] as const;
 
-const SCROLLING_TEXT_PARTS = [
+const softSkills = [
   "autodidacte",
   "polyvalent",
   "persévérant",
@@ -17,10 +17,7 @@ const SCROLLING_TEXT_PARTS = [
   "passionné",
 ] as const;
 
-const CYCLING_SCROLLING_TEXT_PARTS = [
-  ...SCROLLING_TEXT_PARTS,
-  ...SCROLLING_TEXT_PARTS,
-];
+const softSkillsMultiple = [...softSkills, ...softSkills];
 
 const FULL_CYCLE_DURATION = 1e4; // NOTE: 10s
 const SLOW_CYCLE_DURATION = FULL_CYCLE_DURATION * 2;
@@ -133,9 +130,11 @@ function Accueil({ menuShouldChange }: AccueilProps) {
             className="flex relative left-0 transition-[left] duration-[10s] ease-linear z-10"
             ref={cyclingNodeRef}
           >
-            {CYCLING_SCROLLING_TEXT_PARTS.map((v, k) => (
-              <div className="flex mr-1 items-center h-7" key={k}>
-                <span className="font-Merich mr-1 text-white">{v}&nbsp;</span>
+            {softSkillsMultiple.map((value, index: number) => (
+              <div className="flex mr-1 items-center h-7" key={index}>
+                <span className="font-Merich mr-1 text-white">
+                  {value}&nbsp;
+                </span>
                 <span className="font-Kelsi text-yellow-100">X&nbsp;</span>
               </div>
             ))}
