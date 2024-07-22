@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 interface AccueilProps {
   menuShouldChange: boolean;
@@ -22,33 +22,46 @@ const CYCLING_SCROLLING_TEXT_PARTS = [
 ];
 
 function Accueil({ menuShouldChange }: AccueilProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const cyclingNodeRef = useRef<HTMLDivElement>(null);
+  const [cyclingNodeIsHovered, setCyclingNodeIsHovered] =
+    useState<boolean>(false);
+
+  const moveLeft = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    cyclingNode.style.left =
+      "-" + cyclingNode.getBoundingClientRect().width / 2 + "px";
+  }, []);
+
+  const cycle = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    cyclingNode.style.transition = "none";
+    cyclingNode.style.left = "0";
+    cyclingNode.offsetHeight;
+    cyclingNode.style.transition = "";
+
+    moveLeft();
+  }, [moveLeft]);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (container === null) return;
+    console.log(cyclingNodeIsHovered);
+  }, [cyclingNodeIsHovered]);
 
-    const moveLeft = () =>
-      (container.style.left =
-        "-" + container.getBoundingClientRect().width / 2 + "px");
-
-    const cycle = () => {
-      container.style.transition = "none";
-      container.style.left = "0";
-      container.offsetHeight;
-      container.style.transition = "";
-
-      moveLeft();
-    };
+  useEffect(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
 
     const handleTransitionEnd = () => cycle();
 
-    container.addEventListener("transitionend", handleTransitionEnd);
+    cyclingNode.addEventListener("transitionend", handleTransitionEnd);
     moveLeft();
 
     return () =>
-      container.removeEventListener("transitionend", handleTransitionEnd);
-  }, []);
+      cyclingNode.removeEventListener("transitionend", handleTransitionEnd);
+  }, [moveLeft, cycle]);
 
   return (
     <div className="h-screen flex flex-col pt-28 px-10">
@@ -63,10 +76,14 @@ function Accueil({ menuShouldChange }: AccueilProps) {
           {ME.join("\n")}
         </h1>
 
-        <div className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden">
+        <div
+          className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden"
+          onMouseOver={() => setCyclingNodeIsHovered(true)}
+          onMouseOut={() => setCyclingNodeIsHovered(false)}
+        >
           <div
             className="flex animate-[defilement_10s_linear_infinite] hover:animate-[defilement_20s_linear_infinite] cycle-x z-10"
-            ref={containerRef}
+            ref={cyclingNodeRef}
           >
             {CYCLING_SCROLLING_TEXT_PARTS.map((v, k) => (
               <div className="flex mr-1 items-center h-7" key={k}>
