@@ -4,13 +4,14 @@ import Menu from "./component/Menu";
 import "./index.css";
 import Accueil from "./page/Accueil";
 import Competences from "./page/Competences";
+import { Nullable } from "./types/Utils";
 
 function App() {
-  // const subHeaderRef = useRef<HTMLDivElement | null>(null);
-  const accueilRef = useRef<HTMLDivElement | null>(null);
-  const portfolioRef = useRef<HTMLDivElement | null>(null);
-  const compétencesRef = useRef<HTMLDivElement | null>(null);
-  const joindreRef = useRef<HTMLDivElement | null>(null);
+  // const subHeaderRef = useRef<Nullable<HTMLDivElement>>(null);
+  const accueilRef = useRef<Nullable<HTMLDivElement>>(null);
+  const portfolioRef = useRef<Nullable<HTMLDivElement>>(null);
+  const competencesRef = useRef<Nullable<HTMLDivElement>>(null);
+  const joindreRef = useRef<Nullable<HTMLDivElement>>(null);
   const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
 
   return (
@@ -28,12 +29,12 @@ function App() {
         sectionRef={{
           Accueil: accueilRef,
           Portfolio: portfolioRef,
-          Compétences: compétencesRef,
+          Compétences: competencesRef,
           Joindre: joindreRef,
         }}
       />
       <Accueil menuShouldChange={menuShouldChange} />
-      <Competences competencesRef={compétencesRef} />
+      <Competences competencesRef={competencesRef} />
     </div>
   );
 }
