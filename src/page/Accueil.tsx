@@ -106,15 +106,8 @@ function Accueil({ menuShouldChange }: AccueilProps) {
   useEffect(() => {
     const { current: cyclingNode } = cyclingNodeRef;
     if (cyclingNode === null) return;
-
-    const handleTransitionEnd = () => cycle();
-
-    cyclingNode.addEventListener("transitionend", handleTransitionEnd);
     moveLeft();
-
-    return () =>
-      cyclingNode.removeEventListener("transitionend", handleTransitionEnd);
-  }, [moveLeft, cycle]);
+  }, [moveLeft]);
 
   return (
     <div className="h-screen flex flex-col pt-28 px-10">
@@ -133,6 +126,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
           className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden"
           onMouseOver={() => setCyclingNodeIsHovered(true)}
           onMouseOut={() => setCyclingNodeIsHovered(false)}
+          onTransitionEnd={() => cycle()}
         >
           <div
             className="flex relative left-0 transition-[left] duration-[10s] ease-linear z-10"
