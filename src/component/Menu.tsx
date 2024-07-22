@@ -25,7 +25,7 @@ function Menu({
   const [showButton, setShowButton] = useState<boolean>(false);
   const [animateButton, setAnimateButton] = useState<boolean>(false);
 
-  const timeoutsIdsSetRef = useRef<Set<Id>>(new Set([]));
+  const timeoutsIdsSetRef = useRef<Set<Id>>(new Set());
 
   const clearTimeouts = useCallback(
     (
