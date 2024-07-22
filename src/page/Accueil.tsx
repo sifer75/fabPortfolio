@@ -72,7 +72,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
     cyclingNode.offsetHeight;
-    cyclingNode.style.transition = "left 10s linear";
+    cyclingNode.style.transition = "";
 
     moveLeft();
   }, [moveLeft]);
