@@ -23,8 +23,9 @@ const CYCLING_SCROLLING_TEXT_PARTS = [
 
 function Accueil({ menuShouldChange }: AccueilProps) {
   const cyclingNodeRef = useRef<HTMLDivElement>(null);
-  const [cyclingNodeIsHovered, setCyclingNodeIsHovered] =
-    useState<boolean>(false);
+  const [cyclingNodeIsHovered, setCyclingNodeIsHovered] = useState<
+    boolean | null
+  >(null);
 
   const moveLeft = useCallback(() => {
     const { current: cyclingNode } = cyclingNodeRef;
@@ -46,9 +47,49 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     moveLeft();
   }, [moveLeft]);
 
+  const slowdownCycle = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    const computedStyle = getComputedStyle(cyclingNode);
+    const currentLeft = parseFloat(computedStyle.left);
+
+    cyclingNode.style.transition = "none";
+    cyclingNode.style.left = `${currentLeft}px`;
+    cyclingNode.offsetHeight;
+    cyclingNode.style.transition = "left 20s linear";
+
+    moveLeft();
+  }, [moveLeft]);
+
+  const restoreCycleSpeed = useCallback(() => {
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    const computedStyle = getComputedStyle(cyclingNode);
+    const currentLeft = parseFloat(computedStyle.left);
+
+    cyclingNode.style.transition = "none";
+    cyclingNode.style.left = `${currentLeft}px`;
+    cyclingNode.offsetHeight;
+    cyclingNode.style.transition = "left 10s linear";
+
+    moveLeft();
+  }, [moveLeft]);
+
   useEffect(() => {
-    console.log(cyclingNodeIsHovered);
-  }, [cyclingNodeIsHovered]);
+    if (cyclingNodeIsHovered === null) return;
+    const { current: cyclingNode } = cyclingNodeRef;
+    if (cyclingNode === null) return;
+
+    const slowingDownCycle = cyclingNodeIsHovered;
+
+    if (slowingDownCycle) {
+      slowdownCycle();
+    } else {
+      restoreCycleSpeed();
+    }
+  }, [cyclingNodeIsHovered, slowdownCycle, restoreCycleSpeed]);
 
   useEffect(() => {
     const { current: cyclingNode } = cyclingNodeRef;
