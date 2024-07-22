@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: "Merich";
+  src: url("./assets/Merich.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Kelsi";
+  src: url("./assets/Kelsi-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.cycle {
+  position: relative;
+  left: 0;
+  transition: left 10s linear;
+}
