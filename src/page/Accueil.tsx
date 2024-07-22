@@ -21,6 +21,9 @@ const CYCLING_SCROLLING_TEXT_PARTS = [
   ...SCROLLING_TEXT_PARTS,
 ];
 
+const FULL_CYCLE_DURATION = 1e4; // NOTE: 10s
+const SLOW_CYCLE_DURATION = FULL_CYCLE_DURATION * 2;
+
 function Accueil({ menuShouldChange }: AccueilProps) {
   const cyclingNodeRef = useRef<HTMLDivElement>(null);
   const [cyclingNodeIsHovered, setCyclingNodeIsHovered] = useState<
@@ -54,10 +57,16 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const computedStyle = getComputedStyle(cyclingNode);
     const currentLeft = parseFloat(computedStyle.left);
 
+    const containerWidth = cyclingNode.getBoundingClientRect().width;
+    const distanceRemaining = containerWidth / 2 + currentLeft;
+
+    const remainingTime =
+      (distanceRemaining / (containerWidth / 2)) * SLOW_CYCLE_DURATION;
+
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
     cyclingNode.offsetHeight;
-    cyclingNode.style.transition = "left 20s linear";
+    cyclingNode.style.transition = `left ${remainingTime}ms linear`;
 
     moveLeft();
   }, [moveLeft]);
@@ -69,10 +78,16 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const computedStyle = getComputedStyle(cyclingNode);
     const currentLeft = parseFloat(computedStyle.left);
 
+    const containerWidth = cyclingNode.getBoundingClientRect().width;
+    const distanceRemaining = containerWidth / 2 + currentLeft;
+
+    const remainingTime =
+      (distanceRemaining / (containerWidth / 2)) * FULL_CYCLE_DURATION;
+
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
     cyclingNode.offsetHeight;
-    cyclingNode.style.transition = "";
+    cyclingNode.style.transition = `left ${remainingTime}ms linear`;
 
     moveLeft();
   }, [moveLeft]);
@@ -82,9 +97,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const { current: cyclingNode } = cyclingNodeRef;
     if (cyclingNode === null) return;
 
-    const slowingDownCycle = cyclingNodeIsHovered;
-
-    if (slowingDownCycle) {
+    if (cyclingNodeIsHovered) {
       slowdownCycle();
     } else {
       restoreCycleSpeed();
