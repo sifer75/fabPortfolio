@@ -73,13 +73,15 @@ function Menu({
       timeoutsIdsSetRef.current.add(t);
     }
 
+    const dispose = () => clearTimeouts();
+
     if (menuShouldChange) {
       invokeButtonsAnimationAfterOpenedMenuCoroutine();
-      return () => clearTimeouts();
+      return dispose;
     }
 
     invokeCloseMenuAfterButtonsAnimationCoroutine();
-    return () => clearTimeouts();
+    return dispose;
   }, [menuShouldChange, clearTimeouts]);
 
   const scrollToSection = (section: RefObject<HTMLDivElement>) =>
