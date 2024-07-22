@@ -44,27 +44,30 @@ function Menu({
     []
   );
 
-  const generateButtons = useCallback(() => {
-    return Object.keys(sections).map((k) => {
-      const k2 = k as Section;
+  const generateButtons = useCallback(
+    () =>
+      Object.keys(sections).map((k) => {
+        const k2 = k as Section;
 
-      return (
-        <button
-          key={k}
-          className={`border-2 rounded-xl p-2 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-            buttonsSectionsClassnamesMatchers[k2]
-          } ${
-            animateButton
-              ? "delay-300 translate-y-8 opacity-100"
-              : "delay-0 -translate-y-8 opacity-0"
-          }`}
-          onClick={() => scrollToSection(sectionsRefs[k2])}
-        >
-          {sections[k2]}
-        </button>
-      );
-    });
-  }, [animateButton, scrollToSection, sectionsRefs]);
+        return (
+          <button
+            key={k}
+            className={`border-2 rounded-xl p-2 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
+              buttonsSectionsClassnamesMatchers[k2]
+            } ${
+              animateButton
+                ? "delay-300 translate-y-8 opacity-100"
+                : "delay-0 -translate-y-8 opacity-0"
+            }`}
+            onClick={() => scrollToSection(sectionsRefs[k2])}
+          >
+            {sections[k2]}
+          </button>
+        );
+      }),
+
+    [animateButton, scrollToSection, sectionsRefs]
+  );
 
   const clearTimeouts = useCallback(
     (
