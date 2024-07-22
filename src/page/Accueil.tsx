@@ -28,10 +28,9 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const container = containerRef.current;
     if (container === null) return;
 
-    const cycle = () => {
-      container.style.left =
-        "-" + container.getBoundingClientRect().width / 2 + "px";
-    };
+    const cycle = () =>
+      (container.style.left =
+        "-" + container.getBoundingClientRect().width / 2 + "px");
 
     const handleTransitionEnd = () => {
       container.style.transition = "none";
@@ -44,9 +43,8 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     container.addEventListener("transitionend", handleTransitionEnd);
     cycle();
 
-    return () => {
+    return () =>
       container.removeEventListener("transitionend", handleTransitionEnd);
-    };
   }, []);
 
   return (
