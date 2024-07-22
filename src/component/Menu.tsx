@@ -1,15 +1,18 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+
+import type { RefObject, Dispatch, SetStateAction } from "react";
 
 interface MenuProps {
   menuShouldChange: boolean;
-  setMenuShouldChange: React.Dispatch<React.SetStateAction<boolean>>;
+  setMenuShouldChange: Dispatch<SetStateAction<boolean>>;
   sectionRef: {
-    Accueil: React.RefObject<HTMLDivElement>;
-    Portfolio: React.RefObject<HTMLDivElement>;
-    Compétences: React.RefObject<HTMLDivElement>;
-    Joindre: React.RefObject<HTMLDivElement>;
+    Accueil: RefObject<HTMLDivElement>;
+    Portfolio: RefObject<HTMLDivElement>;
+    Compétences: RefObject<HTMLDivElement>;
+    Joindre: RefObject<HTMLDivElement>;
   };
 }
+
 function Menu({
   menuShouldChange,
   setMenuShouldChange,
@@ -19,9 +22,8 @@ function Menu({
   const [menuIsHovered, setMenuIsHovered] = useState<boolean>(false);
   const [showButton, setShowButton] = useState<boolean>(false);
   const [animateButton, setAnimateButton] = useState<boolean>(false);
-  // const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
 
-  //trouver une alternative au useEffect
+  // {ToDo} Trouver une alternative au useEffect
   useEffect(() => {
     //animation des boutons apres ouverture du menu
     if (menuShouldChange) {
@@ -34,23 +36,26 @@ function Menu({
           }, 100);
         }, 100);
       }, 500);
+
       return () => {
         clearTimeout(timeout);
       };
     } else {
       //fermeture du menu apres animation des boutons
       setAnimateButton(false);
+
       const timeout = setTimeout(() => {
         setShowButton(false);
         setMenuIsOpen(false);
       }, 800);
+
       return () => {
         clearTimeout(timeout);
       };
     }
   }, [menuShouldChange]);
 
-  const scrollToSection = (ref: React.RefObject<HTMLDivElement>) => {
+  const scrollToSection = (ref: RefObject<HTMLDivElement>) => {
     if (ref.current) {
       ref.current.scrollIntoView({ behavior: "smooth" });
     }
@@ -68,6 +73,7 @@ function Menu({
               }`
         }`}
       ></div>
+
       {/* barre noir du menu */}
       <div
         className={`absolute top-2 left-2 z-20 w-20 h-20 rounded-full flex flex-col gap-1.5 items-center justify-center hover:scale-125  transition-all duration-100 ease-in-out ${
@@ -95,6 +101,7 @@ function Menu({
           }`}
         ></div>
       </div>
+
       {/* boutton de sélection */}
       <div
         className={`h-full z-30 w-auto ml-20 flex items-center justify-start `}
@@ -111,6 +118,7 @@ function Menu({
             >
               Accueil
             </button>
+
             <button
               className={`border-2 rounded-xl p-2 border-yellow-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
                 animateButton
@@ -121,6 +129,7 @@ function Menu({
             >
               Compétences
             </button>
+
             <button
               className={`border-2 rounded-xl p-2 border-green-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
                 animateButton
@@ -131,6 +140,7 @@ function Menu({
             >
               Portfolio
             </button>
+
             <button
               className={`border-2 rounded-xl p-2 border-blue-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
                 animateButton

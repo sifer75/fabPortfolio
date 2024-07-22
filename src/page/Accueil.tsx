@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Nullable } from "../types/Utils";
+
+import type { Nullable } from "../types/Utils";
 
 interface AccueilProps {
   menuShouldChange: boolean;
