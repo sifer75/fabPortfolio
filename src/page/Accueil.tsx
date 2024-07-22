@@ -62,7 +62,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
 
         <div className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden">
           <div
-            className="flex animate-[defilement_10s_linear_infinite] hover:animate-[defilement_20s_linear_infinite] cycle z-10"
+            className="flex animate-[defilement_10s_linear_infinite] hover:animate-[defilement_20s_linear_infinite] cycle-x z-10"
             ref={containerRef}
           >
             {CYCLING_SCROLLING_TEXT_PARTS.map((v, k) => (
@@ -75,8 +75,8 @@ function Accueil({ menuShouldChange }: AccueilProps) {
         </div>
       </div>
 
-      <div className="flex w-full flex-col text-right">
-        <h2 className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100">
+      <div className="flex ml-auto flex-col text-right">
+        <h2 className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100 max-w-[9ch]">
           {BIG_IDEAS.join("\n")}
         </h2>
       </div>
