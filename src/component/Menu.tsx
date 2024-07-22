@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { RefObject, Dispatch, SetStateAction } from "react";
+import { Id } from "../types/Number";
+import { OneOrMany } from "../types/Utils";
 
 interface MenuProps {
   menuShouldChange: boolean;
@@ -23,43 +25,67 @@ function Menu({
   const [showButton, setShowButton] = useState<boolean>(false);
   const [animateButton, setAnimateButton] = useState<boolean>(false);
 
+  const timeoutsIdsSetRef = useRef<Set<Id>>(new Set([]));
+
+  const clearTimeouts = useCallback(
+    (
+      selector: OneOrMany<Id> = Array.from(timeoutsIdsSetRef.current.values())
+    ) => {
+      function cleanup(selector: Id) {
+        clearTimeout(selector);
+        timeoutsIdsSetRef.current.delete(selector);
+      }
+
+      !Array.isArray(selector) ? cleanup(selector) : selector.forEach(cleanup);
+    },
+
+    []
+  );
+
   // {ToDo} Trouver une alternative au useEffect
   useEffect(() => {
-    //animation des boutons apres ouverture du menu
-    if (menuShouldChange) {
-      const timeout = setTimeout(() => {
+    const invokeButtonsAnimationAfterOpenedMenuCoroutine = () => {
+      const t1 = setTimeout(() => {
         setMenuIsOpen(true);
-        setTimeout(() => {
-          setShowButton(true);
-          setTimeout(() => {
-            setAnimateButton(true);
-          }, 100);
-        }, 100);
-      }, 500);
 
-      return () => {
-        clearTimeout(timeout);
-      };
-    } else {
-      //fermeture du menu apres animation des boutons
+        const t2 = setTimeout(() => {
+          setShowButton(true);
+
+          const t3 = setTimeout(() => {
+            setAnimateButton(true);
+            clearTimeouts([t1, t2, t3]);
+          }, 100);
+          timeoutsIdsSetRef.current.add(t3);
+        }, 100);
+        timeoutsIdsSetRef.current.add(t2);
+      }, 500);
+      timeoutsIdsSetRef.current.add(t1);
+    };
+
+    function invokeCloseMenuAfterButtonsAnimationCoroutine() {
       setAnimateButton(false);
 
-      const timeout = setTimeout(() => {
+      const t = setTimeout(() => {
         setShowButton(false);
         setMenuIsOpen(false);
+        clearTimeouts(t);
       }, 800);
-
-      return () => {
-        clearTimeout(timeout);
-      };
+      timeoutsIdsSetRef.current.add(t);
     }
-  }, [menuShouldChange]);
 
-  const scrollToSection = (ref: RefObject<HTMLDivElement>) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
+    if (menuShouldChange) {
+      invokeButtonsAnimationAfterOpenedMenuCoroutine();
+      return () => clearTimeouts();
     }
-  };
+
+    invokeCloseMenuAfterButtonsAnimationCoroutine();
+    return () => clearTimeouts();
+  }, [menuShouldChange, clearTimeouts]);
+
+  const scrollToSection = (section: RefObject<HTMLDivElement>) =>
+    section.current === null
+      ? undefined
+      : section.current.scrollIntoView({ behavior: "smooth" });
 
   return (
     <aside className="h-full w-max flex fixed z-10">

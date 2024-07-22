@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { Nullable } from "../types/Utils";
+import type { MaybeNull } from "../types/Utils";
 
 interface AccueilProps {
   menuShouldChange: boolean;
@@ -26,7 +26,7 @@ const SLOW_CYCLE_DURATION = FULL_CYCLE_DURATION * 2;
 function Accueil({ menuShouldChange }: AccueilProps) {
   const cyclingNodeRef = useRef<HTMLDivElement>(null);
   const [cyclingNodeIsHovered, setCyclingNodeIsHovered] =
-    useState<Nullable<boolean>>(null);
+    useState<MaybeNull<boolean>>(null);
 
   const moveLeft = useCallback(() => {
     const { current: cyclingNode } = cyclingNodeRef;
