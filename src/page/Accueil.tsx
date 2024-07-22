@@ -126,7 +126,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
           className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden"
           onMouseOver={() => setCyclingNodeIsHovered(true)}
           onMouseOut={() => setCyclingNodeIsHovered(false)}
-          onTransitionEnd={() => cycle()}
+          onTransitionEnd={cycle}
         >
           <div
             className="flex relative left-0 transition-[left] duration-[10s] ease-linear z-10"
