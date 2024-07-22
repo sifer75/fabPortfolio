@@ -45,10 +45,12 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = "0";
     cyclingNode.offsetHeight;
-    cyclingNode.style.transition = "";
+    cyclingNode.style.transition = cyclingNodeIsHovered
+      ? `left ${SLOW_CYCLE_DURATION}ms linear`
+      : "";
 
     moveLeft();
-  }, [moveLeft]);
+  }, [moveLeft, cyclingNodeIsHovered]);
 
   const slowdownCycle = useCallback(() => {
     const { current: cyclingNode } = cyclingNodeRef;
