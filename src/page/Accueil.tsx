@@ -96,6 +96,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
 
   useEffect(() => {
     if (cyclingNodeIsHovered === null) return;
+
     const { current: cyclingNode } = cyclingNodeRef;
     if (cyclingNode === null) return;
 
