@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { RefObject, Dispatch, SetStateAction } from "react";
-import { Id } from "../types/Number";
-import { OneOrMany } from "../types/Utils";
+import type { Id } from "../types/Number";
+import type { OneOrMany } from "../types/Utils";
 
 interface MenuProps {
   menuShouldChange: boolean;
