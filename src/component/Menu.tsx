@@ -85,9 +85,8 @@ function Menu({
   }, [menuShouldChange, clearTimeouts]);
 
   const scrollToSection = (section: RefObject<HTMLDivElement>) =>
-    section.current === null
-      ? undefined
-      : section.current.scrollIntoView({ behavior: "smooth" });
+    section.current !== null &&
+    section.current.scrollIntoView({ behavior: "smooth" });
 
   return (
     <aside className="h-full w-max flex fixed z-10">
@@ -136,7 +135,7 @@ function Menu({
       <div
         className={`h-full z-30 w-auto ml-20 flex items-center justify-start `}
       >
-        {showButton ? (
+        {showButton && (
           <div className="flex flex-col gap-6">
             <button
               className={`border-2 rounded-xl p-2 border-orange-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
@@ -182,7 +181,7 @@ function Menu({
               Joindre
             </button>
           </div>
-        ) : null}
+        )}
       </div>
     </aside>
   );
