@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Nullable } from "../types/Utils";
+// import throttle from "throttleit";
 
 interface AccueilProps {
   menuShouldChange: boolean;
 }
 
 const ME = ["Taupin", "Fabien"] as const;
-const BIG_IDEAS = ["WEB", "DEVELOPER", "FULL STACK"] as const;
+const stack = ["WEB", "DEVELOPER", "FULL STACK"] as const;
 
 const softSkills = [
   "autodidacte",
@@ -19,13 +20,16 @@ const softSkills = [
 
 const softSkillsMultiple = [...softSkills, ...softSkills];
 
-const FULL_CYCLE_DURATION = 1e4; // NOTE: 10s
-const SLOW_CYCLE_DURATION = FULL_CYCLE_DURATION * 2;
+const fullCycleDuration = 1e4; // NOTE: 10s
+const slowCycleDuration = fullCycleDuration * 2;
 
 function Accueil({ menuShouldChange }: AccueilProps) {
   const cyclingNodeRef = useRef<HTMLDivElement>(null);
+  const contentWrapperRef = useRef<HTMLDivElement>(null);
+  const stackRef = useRef<HTMLHeadingElement>(null);
   const [cyclingNodeIsHovered, setCyclingNodeIsHovered] =
     useState<Nullable<boolean>>(null);
+  const [, stScrollY] = useState(window.scrollY);
 
   const moveLeft = useCallback(() => {
     const { current: cyclingNode } = cyclingNodeRef;
@@ -43,7 +47,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     cyclingNode.style.left = "0";
     cyclingNode.offsetHeight;
     cyclingNode.style.transition = cyclingNodeIsHovered
-      ? `left ${SLOW_CYCLE_DURATION}ms linear`
+      ? `left ${slowCycleDuration}ms linear`
       : "";
 
     moveLeft();
@@ -60,7 +64,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const remainingDistance = containerWidth / 2 + currentLeft;
 
     const remainingTime =
-      (remainingDistance / (containerWidth / 2)) * SLOW_CYCLE_DURATION;
+      (remainingDistance / (containerWidth / 2)) * slowCycleDuration;
 
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
@@ -81,7 +85,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     const remainingDistance = containerWidth / 2 + currentLeft;
 
     const remainingTime =
-      (remainingDistance / (containerWidth / 2)) * FULL_CYCLE_DURATION;
+      (remainingDistance / (containerWidth / 2)) * fullCycleDuration;
 
     cyclingNode.style.transition = "none";
     cyclingNode.style.left = `${currentLeft}px`;
@@ -107,8 +111,45 @@ function Accueil({ menuShouldChange }: AccueilProps) {
     moveLeft();
   }, [moveLeft]);
 
+  useEffect(() => {
+    function handleScroll() {
+      console.log("coucou");
+
+      const { scrollY, innerWidth } = window;
+      stScrollY(scrollY);
+      const { current: stackNode } = stackRef;
+      if (stackNode === null) return;
+
+      const texts = stackNode.children as HTMLCollectionOf<HTMLElement>;
+
+      if (scrollY <= 0) {
+        for (const element of texts) element.style.opacity = "";
+        return;
+      }
+
+      const isLargeScreen = innerWidth > 400;
+      const fadeDelta = isLargeScreen ? 200 : 300;
+      // console.log(fadeDelta);
+      for (let i = 0; i < texts.length; i++) {
+        const element = texts[i];
+        const startFade = fadeDelta * i;
+        const distance = scrollY - startFade;
+
+        let opacity = 1 - distance / fadeDelta;
+        opacity = Math.max(0, opacity);
+        opacity = Math.min(1, opacity);
+
+        element.style.opacity = opacity.toString();
+      }
+    }
+
+    // const throttledHandleScroll = throttle(handleScroll, 8);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="h-screen flex flex-col pt-28 px-10">
+    <div className="h-screen flex flex-col pt-28 px-10" ref={contentWrapperRef}>
       <div
         className={`w-[422px] ${
           menuShouldChange
@@ -130,7 +171,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
             className="flex relative left-0 transition-[left] duration-[10s] ease-linear z-10"
             ref={cyclingNodeRef}
           >
-            {softSkillsMultiple.map((value, index: number) => (
+            {softSkillsMultiple.map((value, index) => (
               <div className="flex mr-1 items-center h-7" key={index}>
                 <span className="font-Merich mr-1 text-white">
                   {value}&nbsp;
@@ -142,9 +183,16 @@ function Accueil({ menuShouldChange }: AccueilProps) {
         </div>
       </div>
 
-      <div className="flex ml-auto flex-col text-right">
-        <h2 className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100 max-w-[9ch]">
-          {BIG_IDEAS.join("\n")}
+      <div className="flex ml-auto flex-col text-left">
+        <h2
+          className="text-8xl transition-opacity duration-500 font-Merich text-yellow-100 max-w-[9ch]"
+          ref={stackRef}
+        >
+          {stack.map((value, k) => (
+            <span className="block " key={k}>
+              {value}
+            </span>
+          ))}
         </h2>
       </div>
     </div>
