@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import type WithMenuShouldChange from "./types/WithMenuShouldChange";
 
-interface MenuProps {
-  menuShouldChange: boolean;
+interface MenuProps extends WithMenuShouldChange {
   setMenuShouldChange: React.Dispatch<React.SetStateAction<boolean>>;
   sectionRef: {
     Accueil: React.RefObject<HTMLDivElement>;
