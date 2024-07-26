@@ -10,7 +10,7 @@ function Accueil({ menuShouldChange }: AccueilProps) {
 
   return (
     <section
-      className="h-screen flex flex-col pt-28 px-10"
+      className="h-screen flex flex-col xxs:items-center sm:items-stretch justify-between py-28 px-10"
       ref={contentWrapperRef}
     >
       <MyHeadline menuShouldChange={menuShouldChange} />

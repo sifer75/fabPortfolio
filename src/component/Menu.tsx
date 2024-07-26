@@ -19,7 +19,12 @@ function Menu({
   const [menuIsHovered, setMenuIsHovered] = useState<boolean>(false);
   const [showButton, setShowButton] = useState<boolean>(false);
   const [animateButton, setAnimateButton] = useState<boolean>(false);
-  // const [menuShouldChange, setMenuShouldChange] = useState<boolean>(false);
+  const buttons = [
+    { text: "Accueil", border: "border-orange-400" },
+    { text: "Compétences", border: "border-red-400" },
+    { text: "Portfolio", border: "border-blue-400" },
+    { text: "Joindre", border: "border-green-400" },
+  ] as const;
 
   //trouver une alternative au useEffect
   useEffect(() => {
@@ -62,7 +67,7 @@ function Menu({
       <div
         className={`absolute top-4 left-4 z-10 transition-all duration-500 ease-in-out bg-white ${
           menuIsOpen
-            ? "w-44 h-full top-0 left-0 scale-150"
+            ? "w-40 h-full top-0 left-0 scale-150"
             : `w-16 h-16 rounded-full  ${
                 menuIsHovered ? "scale-125 shadow-2xl" : "scale-100"
               }`
@@ -70,7 +75,7 @@ function Menu({
       ></div>
       {/* barre noir du menu */}
       <div
-        className={`absolute top-2 left-2 z-20 w-20 h-20 rounded-full flex flex-col gap-1.5 items-center justify-center hover:scale-125  transition-all duration-100 ease-in-out ${
+        className={`absolute top-2 left-2 z-50 w-20 h-20 rounded-full flex flex-col gap-1.5 items-center justify-center hover:scale-125 transition-all duration-100 ease-in-out ${
           menuIsOpen ? "" : "hover:scale-125"
         }`}
         onClick={() => setMenuShouldChange(!menuShouldChange)}
@@ -96,51 +101,24 @@ function Menu({
         ></div>
       </div>
       {/* boutton de sélection */}
-      <div
-        className={`h-full z-30 w-auto ml-20 flex items-center justify-start `}
-      >
+      <div className="h-full z-30 w-auto flex items-center justify-start">
         {showButton ? (
-          <div className="flex flex-col gap-6">
-            <button
-              className={`border-2 rounded-xl p-2 border-orange-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-300 translate-y-8 opacity-100"
-                  : "delay-0 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionRef.Accueil)}
-            >
-              Accueil
-            </button>
-            <button
-              className={`border-2 rounded-xl p-2 border-yellow-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-200 translate-y-8 opacity-100"
-                  : "delay-100 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionRef.Compétences)}
-            >
-              Compétences
-            </button>
-            <button
-              className={`border-2 rounded-xl p-2 border-green-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-100 translate-y-8 opacity-100"
-                  : "delay-200 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionRef.Portfolio)}
-            >
-              Portfolio
-            </button>
-            <button
-              className={`border-2 rounded-xl p-2 border-blue-400 hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
-                animateButton
-                  ? "delay-0 translate-y-8 opacity-100"
-                  : "delay-300 -translate-y-8 opacity-0"
-              }`}
-              onClick={() => scrollToSection(sectionRef.Joindre)}
-            >
-              Joindre
-            </button>
+          <div className="flex ml-12 flex-col gap-6">
+            {buttons.map(({ text, border }, index: number) => (
+              <button
+                key={index}
+                className={`border-2 rounded-xl p-2 ${border} hover:scale-110 hover:duration-300 hover:delay-0 transition duration-700 ${
+                  animateButton
+                    ? "delay-300 translate-y-8 opacity-100"
+                    : "delay-0 -translate-y-8 opacity-0"
+                }`}
+                onClick={() =>
+                  scrollToSection(sectionRef[text as keyof typeof sectionRef])
+                }
+              >
+                {text}
+              </button>
+            ))}
           </div>
         ) : null}
       </div>

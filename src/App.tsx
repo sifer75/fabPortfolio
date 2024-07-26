@@ -3,6 +3,8 @@ import Menu from "./component/Menu";
 import "./index.css";
 import Accueil from "./page/Accueil";
 import Competences from "./page/Competences";
+import Portfolio from "./page/Portfolio";
+import Joindre from "./page/Joindre";
 
 function App() {
   const accueilRef = useRef<HTMLDivElement>(null);
@@ -31,7 +33,15 @@ function App() {
         }}
       />
       <Accueil menuShouldChange={menuShouldChange} />
-      <Competences competencesRef={competencesRef} />
+      <Competences
+        competencesRef={competencesRef}
+        menuShouldChange={menuShouldChange}
+      />
+      <Portfolio
+        portfolioRef={portfolioRef}
+        menuShouldChange={menuShouldChange}
+      />
+      <Joindre joindreRef={joindreRef} menuShouldChange={menuShouldChange} />
     </div>
   );
 }

@@ -102,7 +102,7 @@ function CyclingSkills() {
 
   return (
     <div
-      className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-full flex overflow-hidden"
+      className="border-2 border-black bg-black rounded-3xl p-1 h-fit w-[422px]  flex overflow-hidden"
       onMouseOver={() => setCyclingNodeIsHovered(true)}
       onMouseOut={() => setCyclingNodeIsHovered(false)}
       onTransitionEnd={cycle}
