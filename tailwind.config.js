@@ -1,35 +1,34 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from "tailwindcss/defaultTheme";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
-      animation: {
-        "spin-background": "spin-bg 3s linear infinite",
-      },
       keyframes: {
-        "spin-bg": {
-          "0%": {
-            "--border-angle": "0turn",
-          },
-          "100%": {
-            "--border-angle": "1turn",
-          },
+        "slide-up": {
+          "0%": { transform: "translateY(100%)", opacity: 0 },
+          "100%": { transform: "translateY(0)", opacity: 1 },
         },
+        "slide-down": {
+          "0%": { transform: "translateY(0)", opacity: 1 },
+          "100%": { transform: "translateY(100%)", opacity: 0 },
+        },
+        "early-exit": {
+          "0%": { opacity: 1 },
+          "100%": { opacity: 0 },
+        },
+      },
+      animation: {
+        "slide-up": "slide-up 0.5s ease-out forwards",
+        "slide-down": "slide-down 1s ease-out forwards",
+        "early-exit": "early-exit 1s ease-out forwards",
       },
       fontFamily: {
         Beckman: ["Beckman"],
         Merich: ["Merich"],
         Kelsi: ["Kelsi"],
       },
-      screens: {
-        xxs: "375px",
-        xs: "480px",
-        sm: "640px",
-        md: "768px",
-        lg: "1024px",
-        xl: "1280px",
-        "2xl": "1536px",
-      },
+      screens: { ...defaultTheme.screens, xss: "375px" },
       backgroundImage: {
         spinColor:
           "conic-gradient(from 0turn, #213, #112 5%, #112 60%, #213 95%)",
