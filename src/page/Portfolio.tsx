@@ -1,26 +1,56 @@
-import type { RefObject } from "react";
-import WithMenuShouldChange from "../component/types/WithMenuShouldChange";
+import { BentoGrid, BentoGridItem } from "../component/bentoGrid";
 
-interface PortfolioProps extends WithMenuShouldChange {
-  portfolioRef: RefObject<HTMLDivElement>;
-}
-function Portfolio({ portfolioRef, menuShouldChange }: PortfolioProps) {
-  return (
-    <section
-      ref={portfolioRef}
-      className="flex flex-grow w-screen h-screen flex-col items-center justify-between pt-24 pb-10 px-10"
-    >
-      <h1
-        className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5 ${
-          menuShouldChange
-            ? "transition duration-500 delay-100 translate-x-52 sm:translate-x-56"
-            : "transition duration-1000 delay-1000 translate-x-0"
-        }`}
-      >
-        Portfolio
-      </h1>
-    </section>
-  );
+const projects: {
+    img: string;
+    title: string;
+    description: string;
+}[] = [
+    {
+        title: "Projet 1",
+        img: "",
+        description: "Projet 1 description",
+    },
+    {
+        title: "Projet 2",
+        img: "",
+        description: "Projet 2 description",
+    },
+    {
+        title: "Projet 3",
+        img: "",
+        description: "Projet 3 description",
+    },
+];
+
+function Portfolio() {
+    return (
+        <section
+            id="Portfolio"
+            className="flex flex-grow min-h-screen h-screen w-full flex-col items-center pt-24 pb-10 px-10"
+        >
+            <h1
+                className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}
+            >
+                Projets
+            </h1>
+            <div className="flex flex-col justify-center items-center h-full w-full">
+                <BentoGrid className="w-full">
+                    {projects.map((project, index) => {
+                        return (
+                            <BentoGridItem
+                                key={project.title}
+                                title={project.title}
+                                description={project.description}
+                                className={`${
+                                    index === 0 ? "col-span-2" : ""
+                                } last:col-span-3`}
+                            />
+                        );
+                    })}
+                </BentoGrid>
+            </div>
+        </section>
+    );
 }
 
 export default Portfolio;
