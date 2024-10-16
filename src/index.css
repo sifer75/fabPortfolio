@@ -3,49 +3,83 @@
 @tailwind utilities;
 
 @font-face {
-    font-family: "Merich";
-    src: url("./assets/Merich.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Merich";
+  src: url("./assets/Merich.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-    font-family: "Kelsi";
-    src: url("./assets/Kelsi-Regular.otf") format("opentype");
-    font-weight: normal;
-    font-style: normal;
+  font-family: "Kelsi";
+  src: url("./assets/Kelsi-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue";
+  src: url("./assets/Neue Haas Grotesk/NHaasGroteskTXPro-55Rg.otf")
+    format("opentype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .container {
-    --border-angle: 0turn;
-    --main-bg: conic-gradient(
-        from var(--border-angle),
-        #213,
-        #112 5%,
-        #112 60%,
-        #213 95%
-    );
+  --border-angle: 0turn;
+  --main-bg: conic-gradient(
+    from var(--border-angle),
+    #213,
+    #112 5%,
+    #112 60%,
+    #213 95%
+  );
 
-    --gradient-border: conic-gradient(
-        from var(--border-angle),
-        transparent 25%,
-        #08f,
-        #f03 99%,
-        transparent
-    );
+  --gradient-border: conic-gradient(
+    from var(--border-angle),
+    transparent 25%,
+    #08f,
+    #f03 99%,
+    transparent
+  );
 
-    background: var(--main-bg) padding-box, var(--gradient-border) border-box,
-        var(--main-bg) border-box;
+  background: var(--main-bg) padding-box, var(--gradient-border) border-box,
+    var(--main-bg) border-box;
 }
 
 @keyframes bg-spin {
-    to {
-        --border-angle: 1turn;
-    }
+  to {
+    --border-angle: 1turn;
+  }
 }
 
 @property --border-angle {
-    syntax: "<angle>";
-    inherits: true;
-    initial-value: 0turn;
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@layer components {
+  .effect-shine {
+    @apply relative inline-block;
+  }
+
+  .effect-shine:focus {
+    -webkit-mask-image: linear-gradient(
+      -75deg,
+      rgba(0, 0, 0, 0.6) 30%,
+      rgb(254, 249, 195) 50%,
+      rgba(0, 0, 0, 0.6) 70%
+    );
+    -webkit-mask-size: 200%;
+    animation: shine 2s infinite;
+  }
+
+  @keyframes shine {
+    from {
+      -webkit-mask-position: 150%;
+    }
+    to {
+      -webkit-mask-position: -50%;
+    }
+  }
 }

@@ -1,22 +1,14 @@
-import Menu from "./component/Menu";
-import "./index.css";
-import Accueil from "./page/Accueil";
-import Competences from "./page/Competences";
-import Portfolio from "./page/Portfolio";
-import Joindre from "./page/Joindre";
+import { Routes, Route } from "react-router-dom";
+import HomePage from "./page/HomePage";
+import Cv from "./page/Cv";
 
 function App() {
-    return (
-        <div className="min-w-screen h-screen bg-gradient flex flex-row overflow-hidden">
-            <Menu />
-            <div className="flex flex-col overflow-y-scroll w-full scroll-smooth">
-                <Accueil />
-                <Competences />
-                <Portfolio />
-                <Joindre />
-            </div>
-        </div>
-    );
+  return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/cv" element={<Cv />} />
+    </Routes>
+  );
 }
 
 export default App;
