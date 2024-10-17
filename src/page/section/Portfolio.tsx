@@ -17,7 +17,7 @@ const projects: {
     title: "Kanban",
     img: kanban,
     description: "Application Full Stack",
-    stack: ["react", "typescript", "tailwindCss", "adonisJs", "postgreSql"],
+    stack: ["reactTs", "tailwindCss", "adonisJs", "postgreSql"],
   },
 ];
 
@@ -30,7 +30,7 @@ function Portfolio() {
       <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
         Projets
       </h1>
-      <div className="flex gap-10 p-10 justify-around items-center h-full w-full">
+      <div className="flex gap-10 p-10 justify-between w-full h-full">
         {projects.map((project) => {
           return (
             <ProjetCard
