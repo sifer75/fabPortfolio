@@ -1,5 +1,5 @@
 import yugioh from "../../assets/yugioh.png";
-import kanban from "../../assets/funn.svg";
+import kanban from "../../assets/kanban.png";
 import ProjetCard from "../../component/ProjetCard";
 const projects: {
   img: string;
