@@ -1,4 +1,4 @@
-import Node from "../assets/nodeJs.svg";
+import Node from "../assets/nodejs.svg";
 import React from "../assets/react.svg";
 import Tailwind from "../assets/tailwindCss.svg";
 import Express from "../assets/express.png";
