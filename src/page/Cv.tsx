@@ -6,7 +6,7 @@ function Cv() {
   return (
     <div className="w-screen h-screen flex align-center justify-center bg-orange-400 relative">
       <button
-        className="absolute top-10 left-10 bg-white w-20 h-20 rounded-full p-5 border-4 border-black"
+        className="absolute top-10 left-10 bg-white w-20 h-20 rounded-full p-5 border-4 border-black hover:scale-110"
         onClick={() => navigate("/")}
       >
         <CornerDownLeft className="w-8 h-8" />

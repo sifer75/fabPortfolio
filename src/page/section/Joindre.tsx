@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -9,7 +9,7 @@ const ContactForm = () => {
     location: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -26,7 +26,7 @@ const ContactForm = () => {
         `Localisation: ${location}\n\n`
     );
 
-    window.location.href = `mailto:votre-email@example.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -35,7 +35,7 @@ const ContactForm = () => {
       className="w-full h-full flex flex-col gap-5 flex-end justify-around items-center p-5content-around"
     >
       <div className="w-full h-full flex justify-start flex-wrap p-5 content-around text-yellow-300  font-Neue font-semibold text-3xl ">
-        <p className="min-w-fit h-fit px-2 flex items-center">
+        <p className="min-w-fit h-fit px-2 flex items-center font-Neue">
           Salut Fabien, mon nom est
         </p>
         <input
@@ -116,18 +116,6 @@ const ContactForm = () => {
 };
 
 function Joindre() {
-  // const [isVisible, setisVisible] = useState<boolean>(false);
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(
-  //     ([entry]) => {
-  //       if (entry.isIntersecting) {
-  //         setisVisible(true);
-  //       }
-  //     },
-  //     { threshold: 0.3 }
-  //   );
-  // }, []);
   return (
     <section
       id="Joindre"

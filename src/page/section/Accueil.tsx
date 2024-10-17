@@ -8,7 +8,7 @@ function Accueil() {
   return (
     <section
       id="Accueil"
-      className="min-h-screen h-screen w-full flex flex-col xxs:items-center sm:items-stretch justify-between py-28 px-10"
+      className="min-h-screen h-screen w-full flex flex-col xxs:items-center sm:items-stretch justify-between py-28 px-10 "
       ref={contentWrapperRef}
     >
       <MyHeadline />

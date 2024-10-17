@@ -1,24 +1,23 @@
-import { BentoGrid, BentoGridItem } from "../../component/bentoGrid";
 import yugioh from "../../assets/yugioh.png";
+import kanban from "../../assets/funn.svg";
+import ProjetCard from "../../component/ProjetCard";
 const projects: {
   img: string;
   title: string;
   description: string;
+  stack: string[];
 }[] = [
   {
-    title: "Projet 1",
+    title: "Yu-Gi-Oh",
     img: yugioh,
-    description: "Projet 1 description",
+    description: "Utilisation d’une API pour la database.",
+    stack: ["react", "css", "express", "mongoDB"],
   },
   {
-    title: "Projet 2",
-    img: yugioh,
-    description: "Projet 2 description",
-  },
-  {
-    title: "Projet 3",
-    img: yugioh,
-    description: "Projet 3 description",
+    title: "Kanban",
+    img: kanban,
+    description: "Application Full Stack",
+    stack: ["react", "typescript", "tailwindCss", "adonisJs", "postgreSql"],
   },
 ];
 
@@ -31,20 +30,18 @@ function Portfolio() {
       <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
         Projets
       </h1>
-      <div className="flex flex-col justify-center items-center h-full w-full">
-        <BentoGrid className="w-full">
-          {projects.map((project, index) => {
-            return (
-              <BentoGridItem
-                key={project.title}
-                title={project.title}
-                description={project.description}
-                className={`${index === 0 ? "col-span-2" : ""} last:col-span-3`}
-                img={project.img}
-              />
-            );
-          })}
-        </BentoGrid>
+      <div className="flex gap-10 p-10 justify-around items-center h-full w-full">
+        {projects.map((project) => {
+          return (
+            <ProjetCard
+              key={project.title}
+              title={project.title}
+              description={project.description}
+              img={project.img}
+              stack={project.stack}
+            />
+          );
+        })}
       </div>
     </section>
   );

@@ -27,11 +27,8 @@ export default {
         "early-exit": "early-exit 1s ease-out forwards",
       },
       fontFamily: {
-        Beckman: ["Beckman"],
         Merich: ["Merich"],
         Kelsi: ["Kelsi"],
-        Mont: ["mont"],
-        Carving: ["Carving"],
         Neue: ["Neue"],
       },
       screens: { ...defaultTheme.screens, xss: "375px" },

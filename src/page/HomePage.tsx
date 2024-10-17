@@ -4,6 +4,7 @@ import Accueil from "../page/section/Accueil";
 import Competences from "../page/section/Competences";
 import Portfolio from "../page/section/Portfolio";
 import Joindre from "../page/section/Joindre";
+import Description from "../page/section/Description";
 
 function HomePage() {
   return (
@@ -11,6 +12,7 @@ function HomePage() {
       <Menu />
       <div className="flex flex-col overflow-y-scroll w-full scroll-smooth">
         <Accueil />
+        <Description />
         <Portfolio />
         <Competences />
         <Joindre />
