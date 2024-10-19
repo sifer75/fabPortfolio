@@ -83,3 +83,16 @@
     }
   }
 }
+
+.i {
+  padding: 0 5px;
+  user-select: none;
+  transition: 1s;
+  cursor: default;
+}
+
+.i:hover {
+  transition: 0s;
+  color: #0f0;
+  text-shadow: 0 0 120px #0f0;
+}

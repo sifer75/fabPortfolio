@@ -8,15 +8,14 @@ function FadingSkills() {
 
   useEffect(() => {
     function handleScroll() {
-      const { scrollY, innerWidth } = window;
+      const { scrollY: currentScrollY, innerWidth } = window;
       const { current: stackNode } = stackRef;
       if (stackNode === null) return null;
-
       const texts = stackNode.children as HTMLCollectionOf<HTMLElement>;
-      // if (scrollY <= 0) {
-      //   for (const element of texts) element.style.opacity = "";
-      //   return;
-      // }
+      if (currentScrollY <= 0) {
+        for (const element of texts) element.style.opacity = "";
+        return;
+      }
       const isLargeScreen = innerWidth > 500;
       const fadeDeltaFluidity = innerWidth / 12;
       const fadeDelta = isLargeScreen
@@ -27,23 +26,24 @@ function FadingSkills() {
         const text = texts[i];
         const startFade = fadeDelta * i;
 
-        const distance = scrollY - startFade;
-
+        const distance = currentScrollY - startFade;
         const opacity = Math.max(0, 1 - distance / fadeDelta);
 
         text.style.opacity = String(opacity);
       }
     }
 
-    const throttledHandleScroll = throttle(handleScroll, 8);
+    const throttledHandleScroll = throttle(handleScroll, 16);
+
     document.addEventListener("scroll", throttledHandleScroll);
 
     handleScroll();
+
     return () => document.removeEventListener("scroll", throttledHandleScroll);
   }, []);
 
   return (
-    <div className="flex ml-auto max-w-full flex-col text-right">
+    <div className="flex ml-auto max-w-full flex-col text-right z-10">
       <h2
         className="text-[5.45rem] leading-[1] transition-opacity duration-500 font-Merich text-yellow-100 max-sm:mt-6 max-sm:text-4xl"
         ref={stackRef}

@@ -19,11 +19,11 @@ const ContactForm = () => {
 
     const subject = encodeURIComponent(`Contact de ${company}`);
     const body = encodeURIComponent(
-      `Nom: ${name}\n` +
-        `Email: ${email}\n` +
-        `Telephone: ${phone}\n` +
-        `Entreprise: ${company}\n` +
-        `Localisation: ${location}\n\n`
+      `Salut Fabien, mon nom est ${name}.\n 
+        Je travaille actuellement dans l'entreprise ${location}.\n
+        Notre siège se situe à ${company}.\n
+        Vous pouvez me joindre à l'adresse suivante: ${email}\n
+        ou par téléphone au ${phone}.\n`
     );
 
     window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
@@ -32,9 +32,9 @@ const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full h-full flex flex-col gap-5 flex-end justify-around items-center p-5content-around"
+      className="w-full h-full flex flex-col gap-5 flex-end justify-around items-center"
     >
-      <div className="w-full h-full flex justify-start flex-wrap p-5 content-around text-yellow-300  font-Neue font-semibold text-3xl ">
+      <div className="w-full h-full flex justify-start flex-wrap p-5 content-around text-yellow-300  font-Neue font-semibold text-4xl ">
         <p className="min-w-fit h-fit px-2 flex items-center font-Neue">
           Salut Fabien, mon nom est
         </p>
@@ -50,6 +50,7 @@ const ContactForm = () => {
           placeholder="nom"
           className="h-fit max-w-full px-2 effect-shine flex flex-wrap bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <span> .</span>
         <p className="h-fit flex items-center px-2">
           Je travaille actuellement dans l'entreprise
         </p>
@@ -64,7 +65,8 @@ const ContactForm = () => {
           placeholder="Entreprise"
           className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <p className="h-fit flex items-center px-2">Notre siège se situe</p>
+        <span> .</span>
+        <p className="h-fit flex items-center px-2">Notre siège se situe à </p>
         <input
           type="text"
           id="location"
@@ -76,9 +78,9 @@ const ContactForm = () => {
           placeholder="Lieu"
           className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <span> .</span>
         <p className="h-fit flex items-center px-2">
-          Si vous souhaitez entrer en contact avec moi, vous pouvez me joindre à
-          l'adresse suivante
+          Vous pouvez me joindre à l'adresse suivante
         </p>
         <input
           type="email"
@@ -104,6 +106,7 @@ const ContactForm = () => {
           placeholder="téléphone"
           className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
+        <span> .</span>
       </div>
       <button
         type="submit"

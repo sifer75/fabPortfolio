@@ -4,7 +4,7 @@ const me = ["Taupin", "Fabien"] as const;
 
 const MyHeadline = () => (
   <div
-    className={`sm:w-[316px] md:w-[422px] max-w-full transition duration-500 delay-100`}
+    className={`sm:w-[316px] md:w-[422px] z-10 max-w-full transition duration-500 delay-100`}
   >
     <h1 className=" font-Merich w-fit text-yellow-100">
       {me.map((txt, k) => (

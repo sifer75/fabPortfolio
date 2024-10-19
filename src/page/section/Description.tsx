@@ -37,14 +37,14 @@ function Decription() {
             de l'expérience utilisateur. Je m'efforce de créer des produits qui
             sont esthétiquement plaisants et faciles à utiliser.
           </p>
-          <div className="w-full  h-fit flex-col flex  gap-4 flex-grow-0 items-center">
+          <div className="w-full pl-1 h-fit flex-col flex  gap-4 flex-grow-0 items-center">
             <h2 className="w-full font-Merich text-yellow-100 text-3xl">
               Mes liens:
             </h2>
             <div className="flex w-full h-fit justify-start gap-5 text-yellow-100 pl-5">
               {links.map(
                 (link: { title: string; url: string; border: string }) => (
-                  <Link to={link.url}>
+                  <Link to={link.url} key={link.title}>
                     <button
                       className={`border-2 rounded-xl p-2 h-fit text-xl w-32 ${link.border}`}
                     >

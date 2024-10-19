@@ -5,21 +5,32 @@ const projects: {
   img: string;
   title: string;
   description: string;
-  stack: string[];
+  stack: { title: string; color: string }[];
   link: string;
 }[] = [
   {
     title: "Yu-Gi-Oh",
     img: yugioh,
     description: "Utilisation d’une API pour la database",
-    stack: ["React", "Css", "Express", "MongoDB"],
+    stack: [
+      { title: "React", color: "bg-blue-500 border-black" },
+      { title: "Css", color: "bg-blue-500 border-black" },
+      { title: "Express", color: "bg-blue-500 border-black" },
+      { title: "MongoDB", color: "bg-blue-500 border-black" },
+    ],
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
   },
   {
     title: "Kanban",
     img: kanban,
     description: "Application Full Stack",
-    stack: ["React", "Typescript", "Tailwind", "Adonis", "Postgre"],
+    stack: [
+      { title: "React", color: "bg-blue-500 border-black" },
+      { title: "Typescript", color: "bg-blue-500 border-black" },
+      { title: "Tailwind", color: "bg-blue-500 border-black" },
+      { title: "Adonis", color: "bg-blue-500 border-black" },
+      { title: "Postgre", color: "bg-blue-500 border-black" },
+    ],
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
   },
 ];

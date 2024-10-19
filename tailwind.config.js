@@ -33,8 +33,6 @@ export default {
       },
       screens: { ...defaultTheme.screens, xss: "375px" },
       backgroundImage: {
-        spinColor:
-          "conic-gradient(from 0turn, #213, #112 5%, #112 60%, #213 95%)",
         gradient:
           "linear-gradient(180deg, rgba(0,70,255,1) 0%, rgba(0,155,255,1) 100%)",
       },
