@@ -13,8 +13,8 @@ function Menu() {
   return (
     <div
       onClick={() => setMenuIsOpen(!menuIsOpen)}
-      className={`flex flex-col transition-all relative duration-700 overflow-hidden ease-in-out bg-white ${
-        menuIsOpen ? "h-full w-60" : "h-16 w-16 rounded-[48px] ml-4 mt-4"
+      className={` z-20 flex flex-col transition-all duration-700 overflow-hidden ease-in-out bg-white ${
+        menuIsOpen ? "h-screen w-60" : "h-16 w-16 rounded-[48px] ml-4 mt-4"
       }`}
     >
       <div

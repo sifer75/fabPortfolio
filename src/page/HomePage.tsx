@@ -11,7 +11,7 @@ function HomePage() {
   return (
     <div className="min-w-screen h-full bg-gradient flex flex-row overflow-hidden">
       <Menu />
-      <div className="flex flex-col  overflow-y-scroll w-full scroll-smooth">
+      <div className="flex flex-col overflow-y-scroll w-full scroll-smooth">
         <Accueil />
         <Description />
         <Portfolio />
