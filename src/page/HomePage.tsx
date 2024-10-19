@@ -9,17 +9,19 @@ import Test from "./section/Test";
 
 function HomePage() {
   return (
-    <div className="min-w-screen h-full bg-gradient flex flex-row overflow-hidden">
-      <Menu />
+    <div className="min-w-screen h-full bg-gradient flex  overflow-hidden">
+      <div className="z-20 h-full w-fit">
+        <Menu />
+      </div>
       <div className="flex flex-col overflow-y-scroll w-full scroll-smooth">
         <Accueil />
         <Description />
         <Portfolio />
         <Competences />
         <Joindre />
-      </div>
-      <div className="z-0 inset-0 absolute">
-        <Test />
+        <div className="z-0 inset-0 absolute">
+          <Test />
+        </div>
       </div>
     </div>
   );

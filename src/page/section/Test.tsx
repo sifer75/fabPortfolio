@@ -55,8 +55,13 @@ function Test() {
     faNetworkWired,
   ] as const;
 
+  const shuffleArray = (array: any[]) => {
+    return array.sort(() => Math.random() - 0.5);
+  };
+
   const renderIcons = () => {
-    return logos.map((icon, index) => (
+    const shuffleLogos = shuffleArray([...logos]);
+    return shuffleLogos.map((icon, index: number) => (
       <FontAwesomeIcon
         key={index}
         icon={icon}
@@ -68,7 +73,7 @@ function Test() {
 
   return (
     <div
-      className="w-screen h-full relative text-3xl"
+      className="w-screen h-full relative text-3xl border border-black"
       style={{
         overflow: "hidden",
         position: "relative",
