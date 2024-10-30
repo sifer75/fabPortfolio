@@ -44,7 +44,7 @@ function Portfolio() {
       <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
         Projets
       </h1>
-      <div className="flex gap-10 p-10 justify-around w-full items-center h-full">
+      <div className="flex gap-10 p-10 justify-around w-full items-center h-full border-y border-yellow-100">
         {projects.map((project) => {
           return (
             <ProjetCard

@@ -1,67 +1,61 @@
-import { Link } from "react-router-dom";
-import Fabien from "../../assets/fabien.png";
-
+import { useEffect, useRef } from "react";
+import Links from "../../component/Links";
 function Decription() {
-  const links = [
-    {
-      title: "Linkedin",
-      url: "https://www.linkedin.com/in/fabien-taupin/",
-      border: "border-orange-400",
-    },
-    {
-      title: "Github",
-      url: "https://github.com/sifer75",
-      border: "border-yellow-400",
-    },
-    { title: "Cv", url: "/cv", border: "border-red-400" },
-  ];
+  const sectionRef = useRef<HTMLDivElement | null>(null);
+  const text =
+    "Développeur web passionné, je souhaite apprendre de nouvelles notions et des solutions technologiques innovantes. J'apprécie le travail en équipe et j'aime intégrer les suggestions pour contribuer au succès de projets. Également attentif aux détails, orienté vers la qualité et soucieux de l'expérience utilisateur. Je m'efforce de créer des produits qui sont esthétiquement plaisants et faciles à utiliser.";
+  const words = text.split(" ");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const { scrollY: currentScrollY } = window;
+      const { current: stackNode } = sectionRef;
+
+      if (stackNode === null) return null;
+      const texts = stackNode.children as HTMLCollectionOf<HTMLSpanElement>;
+
+      const sectionTop =
+        stackNode.getBoundingClientRect().top + currentScrollY - innerHeight;
+      const distanceScrolled = currentScrollY - sectionTop;
+
+      console.log(distanceScrolled, "ddd");
+
+      for (let i = 0; i < texts.length; i++) {
+        const text = texts[i];
+        const offset = i * 16;
+        const newOpacity = Math.min(
+          Math.max(0.5 + (distanceScrolled - offset) / 300, 0.5),
+          1
+        );
+        text.style.opacity = String(newOpacity);
+      }
+    };
+
+    document.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => document.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <section
       id="Description"
-      className="min-h-screen h-screen w-full flex flex-col xxs:items-center sm:items-stretch justify-between py-28 px-10 "
+      className="min-h-screen h-screen w-full flex flex-col py-16 px-10 justify-between"
     >
-      <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
-        Description
-      </h1>
-      <div className="w-full h-full flex gap-20">
-        <div className="flex flex-col w-2/3 justify-around">
-          <p className="font-Neue text-yellow-300 text-xl w-full pl-5 pb-10">
-            Développeur front end passionné par la création de solutions
-            innovantes, je suis spécialisé dans la mise en place de sites web et
-            d'applications web robustes et performantes. J'aime résoudre des
-            problèmes complexes en utilisant des approches créatives et des
-            solutions technologiques de pointe. J'apprécie le travail en équipe
-            et intégrer les suggestions pour contribuer au succès de projets.
-            Également attentif aux détails, orienté vers la qualité et soucieux
-            de l'expérience utilisateur. Je m'efforce de créer des produits qui
-            sont esthétiquement plaisants et faciles à utiliser.
-          </p>
-          <div className="w-full pl-1 h-fit flex-col flex  gap-4 flex-grow-0 items-center">
-            <h2 className="w-full font-Merich text-yellow-100 text-3xl">
-              Mes liens:
-            </h2>
-            <div className="flex w-full h-fit justify-start gap-5 text-yellow-100 pl-5">
-              {links.map(
-                (link: { title: string; url: string; border: string }) => (
-                  <Link to={link.url} key={link.title}>
-                    <button
-                      className={`border-2 rounded-xl p-2 h-fit text-xl w-32 ${link.border}`}
-                    >
-                      {link.title}
-                    </button>
-                  </Link>
-                )
-              )}
-            </div>
-          </div>
-        </div>
-        <img
-          className=" h-60 bg-cover bg-center mt-1 bg-no-repeat border border-white rounded-xl"
-          src={Fabien}
-          alt="photo"
-        ></img>
+      <div className="w-fit flex items-center gap-10">
+        <h1 className="flex w-full text-8xl font-Merich text-yellow-100 pb-7">
+          Description
+        </h1>
+        <Links />
       </div>
+      <p className="font-Neue text-yellow-300 text-5xl w-full" ref={sectionRef}>
+        {words.map((word: string, index: number) => (
+          <span key={index}>
+            {word} <span> </span>
+          </span>
+        ))}
+      </p>
     </section>
   );
 }
