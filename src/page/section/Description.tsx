@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import Links from "../../component/Links";
 function Decription() {
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const text =
@@ -24,7 +23,7 @@ function Decription() {
         const text = texts[i];
         const offset = i * 16;
         const newOpacity = Math.min(
-          Math.max(0.5 + (distanceScrolled - offset) / 300, 0.5),
+          Math.max(0.5 + (distanceScrolled - offset) / 250, 0.3),
           1
         );
         text.style.opacity = String(newOpacity);
@@ -41,14 +40,8 @@ function Decription() {
   return (
     <section
       id="Description"
-      className="min-h-screen h-screen w-full flex flex-col py-16 px-10 justify-between"
+      className=" h-full w-full flex flex-col py-16 px-10 justify-between"
     >
-      <div className="w-fit flex items-center gap-10">
-        <h1 className="flex w-full text-8xl font-Merich text-yellow-100 pb-7">
-          Description
-        </h1>
-        <Links />
-      </div>
       <p className="font-Neue text-yellow-300 text-5xl w-full" ref={sectionRef}>
         {words.map((word: string, index: number) => (
           <span key={index}>

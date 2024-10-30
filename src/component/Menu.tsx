@@ -4,7 +4,6 @@ function Menu() {
   const [menuIsOpen, setMenuIsOpen] = useState<boolean>(false);
   const buttons = [
     { text: "Accueil", border: "border-orange-400" },
-    { text: "Description", border: "border-purple-400" },
     { text: "Portfolio", border: "border-blue-400" },
     { text: "Compétences", border: "border-red-400" },
     { text: "Joindre", border: "border-green-400" },

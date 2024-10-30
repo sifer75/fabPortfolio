@@ -7,36 +7,26 @@ const links = [
   {
     title: "Linkedin",
     url: "https://www.linkedin.com/in/fabien-taupin/",
-    border: "border-orange-400",
     image: Linkedin,
   },
   {
     title: "Github",
     url: "https://github.com/sifer75",
-    border: "border-yellow-400",
     image: Github,
   },
-  { title: "Cv", url: "/cv", border: "border-red-400", image: Cv },
+  { title: "Cv", url: "/cv", image: Cv },
 ];
+
 function Links() {
   return (
-    <div className="flex z-10 h-fit justify-start gap-5 text-yellow-100 border border-yellow-100 rounded-xl w-fit p-5">
-      {links.map(
-        (link: {
-          title: string;
-          url: string;
-          border: string;
-          image: string;
-        }) => (
-          <Link to={link.url} key={link.title}>
-            <button
-              className={`border-2 rounded-xl p-2 h-fit  text-xl  ${link.border}`}
-            >
-              <img src={link.image} alt="logo" className="min-w-10"></img>
-            </button>
-          </Link>
-        )
-      )}
+    <div className="flex z-20 bg-blue-800 top-10 right-12 h-fit justify-start gap-5 text-yellow-100 border-2 border-black rounded-xl w-fit p-5 fixed">
+      {links.map((link: { title: string; url: string; image: string }) => (
+        <Link to={link.url} key={link.title}>
+          <button className="border rounded-xl p-2 h-fit text-xl hover:scale-125 transition-all hover:bg-yellow-200 border-black">
+            <img src={link.image} alt="logo" className="w-10 "></img>
+          </button>
+        </Link>
+      ))}
     </div>
   );
 }

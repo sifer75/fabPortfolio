@@ -110,7 +110,7 @@ const ContactForm = () => {
       </div>
       <button
         type="submit"
-        className="w-1/3 h-max bg-black text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
+        className="w-1/3 h-max bg-black hover:border-yellow-200 hover:text-yellow-200 hover:scale-105 transition-all text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
       >
         Envoyer
       </button>
