@@ -1,37 +1,45 @@
 import yugioh from "../../assets/yugioh.png";
 import kanban from "../../assets/kanban.png";
 import ProjetCard from "../../component/ProjetCard";
+interface DetailProps {
+  category: string;
+  role: string;
+  tag: string[];
+}
+
 const projects: {
   img: string;
   title: string;
   description: string;
-  stack: { title: string; color: string }[];
+  detail: DetailProps;
   link: string;
+  gitHub: string;
 }[] = [
   {
-    title: "Yu-Gi-Oh",
+    title: "YU-GI-OH",
     img: yugioh,
-    description: "Utilisation d’une API pour la database",
-    stack: [
-      { title: "React", color: "bg-blue-500 border-black" },
-      { title: "Css", color: "bg-blue-500 border-black" },
-      { title: "Express", color: "bg-blue-500 border-black" },
-      { title: "MongoDB", color: "bg-blue-500 border-black" },
-    ],
+    description:
+      "Conçu pour me perfectionner dans le développement frontend. Ils’appuie sur une API pour simuler le backend, me permettant demettre en pratique des compétences telles que la gestion d’état, lesappels API, et les interactions utilisateur tout en explorant des technologies modernes du frontend.",
+    detail: {
+      category: "Site vitrine",
+      role: "Initiation au React avec api",
+      tag: ["React", "Css", "Express", "MongoDB"],
+    },
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
+    gitHub: "https://github.com/sifer75/YU-GI-OH/tree/main/YU-GI-OH",
   },
   {
     title: "Kanban",
     img: kanban,
-    description: "Application Full Stack",
-    stack: [
-      { title: "React", color: "bg-blue-500 border-black" },
-      { title: "Typescript", color: "bg-blue-500 border-black" },
-      { title: "Tailwind", color: "bg-blue-500 border-black" },
-      { title: "Adonis", color: "bg-blue-500 border-black" },
-      { title: "Postgre", color: "bg-blue-500 border-black" },
-    ],
+    description:
+      "Conçu pour me perfectionner dans le développement frontend. Ils’appuie sur une API pour simuler le backend, me permettant demettre en pratique des compétences telles que la gestion d’état, lesappels API, et les interactions utilisateur tout en explorant destechnologies modernes du frontend.",
+    detail: {
+      category: "Gestionnaire de Tâches",
+      role: "Application full Stack",
+      tag: ["React", "Tailwind", "AdoniJs", "Postgre"],
+    },
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
+    gitHub: "https://github.com/sifer75/fun",
   },
 ];
 
@@ -39,25 +47,21 @@ function Portfolio() {
   return (
     <section
       id="Portfolio"
-      className="flex flex-grow min-h-screen h-screen w-full flex-col items-center pt-24 pb-10 px-10"
+      className="flex flex-grow h-fit w-full flex-col items-center py-20 px-10"
     >
-      <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
-        Projets
-      </h1>
-      <div className="flex gap-10 p-10 justify-around w-full items-center h-full">
-        {projects.map((project) => {
-          return (
-            <ProjetCard
-              key={project.title}
-              title={project.title}
-              description={project.description}
-              img={project.img}
-              stack={project.stack}
-              link={project.link}
-            />
-          );
-        })}
-      </div>
+      {projects.map((project) => {
+        return (
+          <ProjetCard
+            key={project.title}
+            title={project.title}
+            description={project.description}
+            img={project.img}
+            detail={project.detail}
+            link={project.link}
+            gitHub={project.gitHub}
+          />
+        );
+      })}
     </section>
   );
 }

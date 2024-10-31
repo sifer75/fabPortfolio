@@ -13,11 +13,11 @@ function Menu() {
     <div
       onClick={() => setMenuIsOpen(!menuIsOpen)}
       className={`flex flex-col transition-all duration-700 overflow-hidden ease-in-out bg-white ${
-        menuIsOpen ? "h-screen w-60" : " h-16 w-16 rounded-[48px] ml-4 mt-4"
+        menuIsOpen ? "h-screen w-60" : " h-16 w-16 rounded-[48px] ml-5 mt-4"
       }`}
     >
       <div
-        className={`transition-all relative duration-500 ease-in-out pr-1 h-16 w-16 rounded-full aspect-square flex flex-col justify-center items-center`}
+        className={`transition-all relative duration-500 ease-in-out h-16 w-16 rounded-full aspect-square flex flex-col justify-center items-center`}
       >
         <div
           className={`rounded-full flex flex-col gap-1.5 items-center justify-center transition-all duration-100 ease-in-out`}

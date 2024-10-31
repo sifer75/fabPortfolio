@@ -122,7 +122,7 @@ function Joindre() {
   return (
     <section
       id="Joindre"
-      className="flex flex-grow min-h-screen h-screen w-full flex-col items-center justify-between pt-24 pb-10 px-10"
+      className="flex flex-grow min-h-screen h-screen w-full flex-col items-center justify-between py-24 pb-10 px-10"
     >
       <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
         Joindre

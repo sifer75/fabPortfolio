@@ -40,7 +40,7 @@ function Decription() {
   return (
     <section
       id="Description"
-      className=" h-full w-full flex flex-col py-16 px-10 justify-between"
+      className=" h-fit w-full flex items-center px-10 py-24 justify-between"
     >
       <p className="font-Neue text-yellow-300 text-5xl w-full" ref={sectionRef}>
         {words.map((word: string, index: number) => (
