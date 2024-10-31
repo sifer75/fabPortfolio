@@ -26,15 +26,15 @@ export const ProjetCard = ({
       <div className="h-full w-1/2 flex flex-col justify-between ">
         <div className="flex flex-col gap-10 justify-start h-full pb-20">
           <h1 className="font-Merich text-yellow-100 text-5xl">{title}</h1>
-          {description}
+          <p className="font-Neue text-yellow-100">{description}</p>
           <div className="flex flex-col w-full">
             <div className="w-full flex items-center">
-              <div className="[&>p]:border-black flex flex-col [&>p]:py-2 [&>p]:italic ">
+              <div className="[&>p]:border-yellow-100 flex flex-col [&>p]:py-2 [&>p]:italic &>p]:font-Neue [&>p]:text-yellow-100">
                 <p className="border-t">Categorie: </p>
                 <p className="border-y">Role: </p>
                 <p className="border-b">Stack: </p>
               </div>
-              <div className="flex flex-col [&>p]:py-2 [&>p]:pl-4 [&>p]:border-black w-full  border-black py-2">
+              <div className="flex flex-col [&>p]:py-2 [&>p]:pl-4 [&>p]:border-yellow-100 w-full [&>p]:font-Neue [&>p]:text-yellow-100 border-black py-2">
                 <p className="border-t">{detail.category}</p>
                 <p className="border-y">{detail.role}</p>
                 <p className="border-b">{detail.tag.join(", ")}</p>
@@ -44,9 +44,11 @@ export const ProjetCard = ({
         </div>
         <Link
           to={gitHub}
-          className="w-fit flex text-merich group text-yellow-100 gap-5 text-3xl items-center mb-10"
+          className="w-fit flex text-merich group  gap-5 items-center mb-10"
         >
-          Github
+          <p className="text-yellow-100 text-3xl group-hover:scale-125 transition-all">
+            Github
+          </p>
           <MousePointerClick className="w-14 text-black h-14 group-hover:scale-125 transition-all group-hover:text-yellow-100" />
         </Link>
       </div>
