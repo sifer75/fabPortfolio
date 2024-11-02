@@ -10,17 +10,17 @@ import Icons from "../component/Icons";
 function HomePage() {
   return (
     <div className="w-screen h-full bg-gradient flex overflow-hidden">
-      <div className="z-20 h-full w-fit sticky">
+      <div className="z-20 h-full w-fit sticky hidden lg:block">
         <Menu />
       </div>
-      <div className="flex flex-col overflow-y-scroll w-full scroll-smooth">
+      <div className="flex flex-col overflow-y-scroll w-fit h-full scroll-smooth">
         <Accueil />
         <Description />
         <Portfolio />
         <Competences />
         <Joindre />
       </div>
-      <div className="z-0 inset-0 absolute w-screen">
+      <div className="z-0 inset-0 absolute w-screen hidden lg:block">
         <Icons />
       </div>
     </div>

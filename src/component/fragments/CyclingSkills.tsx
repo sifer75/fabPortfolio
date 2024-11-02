@@ -102,7 +102,7 @@ function CyclingSkills() {
 
   return (
     <div
-      className="border-2 border-yellow-300 rounded-3xl p-1 h-fit w-[422px]  flex overflow-hidden"
+      className="border-2 border-yellow-300 rounded-3xl w-[237px] xs:w-[316px] lg:w-[422px] p-1 h-fit flex overflow-hidden"
       onMouseOver={() => setCyclingNodeIsHovered(true)}
       onMouseOut={() => setCyclingNodeIsHovered(false)}
       onTransitionEnd={cycle}

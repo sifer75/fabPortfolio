@@ -31,7 +31,7 @@ export default {
         Kelsi: ["Kelsi"],
         Neue: ["Neue"],
       },
-      screens: { ...defaultTheme.screens, xss: "375px" },
+      screens: { ...defaultTheme.screens, xs: "500px" },
       backgroundImage: {
         gradient:
           "linear-gradient(180deg, rgba(0,70,255,1) 0%, rgba(0,155,255,1) 100%)",

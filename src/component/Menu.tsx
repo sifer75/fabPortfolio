@@ -12,7 +12,7 @@ function Menu() {
   return (
     <div
       onClick={() => setMenuIsOpen(!menuIsOpen)}
-      className={`flex flex-col transition-all duration-700 overflow-hidden ease-in-out bg-white ${
+      className={`flex flex-col transition-all duration-700 overflow-hidden ease-in-out bg-white  ${
         menuIsOpen ? "h-screen w-60" : " h-16 w-16 rounded-[48px] ml-5 mt-4"
       }`}
     >

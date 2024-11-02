@@ -16,15 +16,22 @@ function FadingSkills() {
         for (const element of texts) element.style.opacity = "";
         return;
       }
-      const isLargeScreen = innerWidth > 500;
-      const fadeDeltaFluidity = innerWidth / 12;
-      const fadeDelta = isLargeScreen
-        ? 200
-        : Math.max(50, 100 - fadeDeltaFluidity);
+
+      let fadeDelta;
+      let startOffset;
+
+      if (innerWidth >= 320 && innerWidth <= 500) {
+        fadeDelta = 500;
+        startOffset = 500;
+      } else {
+        fadeDelta = 200;
+        fadeDelta = 50;
+      }
 
       for (let i = 0; i < texts.length; i++) {
         const text = texts[i];
-        const startFade = fadeDelta * i;
+        if (!startOffset) return;
+        const startFade = fadeDelta * i - startOffset;
 
         const distance = currentScrollY - startFade;
         const opacity = Math.max(0, 1 - distance / fadeDelta);
@@ -43,13 +50,16 @@ function FadingSkills() {
   }, []);
 
   return (
-    <div className="flex ml-auto max-w-full flex-col text-right z-10">
+    <div className="flex h-fit max-w-full flex-col text-right z-10 items-center sm:items-end">
       <h2
-        className="text-[5.45rem] leading-[1] transition-opacity duration-500 font-Merich text-yellow-100 max-sm:mt-6 max-sm:text-4xl"
+        className=" leading-[1] transition-opacity duration-500 font-Merich text-yellow-100"
         ref={stackRef}
       >
         {stack.map((value, k) => (
-          <span className="block" key={k}>
+          <span
+            className="block text-4xl xs:text-5xl sm:text-6xl lg:text-7xl"
+            key={k}
+          >
             {value}
           </span>
         ))}

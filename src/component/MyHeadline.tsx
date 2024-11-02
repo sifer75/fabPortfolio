@@ -3,15 +3,10 @@ import CyclingSkills from "./fragments/CyclingSkills";
 const me = ["Taupin", "Fabien"] as const;
 
 const MyHeadline = () => (
-  <div
-    className={`sm:w-[316px] md:w-[422px] z-10 max-w-full transition duration-500 delay-100`}
-  >
-    <h1 className=" font-Merich w-fit text-yellow-100">
+  <div className="w-full xs:flex xs:items-center h-fit z-10 transition duration-500 delay-100 flex flex-col items-center sm:items-start">
+    <h1 className="font-Merich w-fit text-yellow-100">
       {me.map((txt, k) => (
-        <div
-          className="xxs:text-7xl xs:text-8xl sm:text-8xl md:text-9xl"
-          key={k}
-        >
+        <div className="text-7xl  xs:text-8xl lg:text-9xl" key={k}>
           {txt}
         </div>
       ))}

@@ -42,7 +42,10 @@ function Decription() {
       id="Description"
       className=" h-fit w-full flex items-center px-10 py-24 justify-between"
     >
-      <p className="font-Neue text-yellow-300 text-5xl w-full" ref={sectionRef}>
+      <p
+        className="font-Neue text-yellow-300 text-xl xs:text-2xl sm:text-3xl lg:text-4xl w-full"
+        ref={sectionRef}
+      >
         {words.map((word: string, index: number) => (
           <span key={index}>
             {word} <span> </span>
