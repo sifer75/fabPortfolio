@@ -30,10 +30,10 @@ function Joindre() {
   };
 
   return (
-    <section id="Joindre" className="h-full w-full p-10">
+    <section id="Joindre" className="h-screen w-full p-10">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 items-center"
+        className="h-full flex flex-col justify-around items-center"
       >
         <div className="[&>input]:bg-transparent [&>input]:w-fit [&>input]:effect-shine text-yellow-300 font-Neue font-semibold text-xl xs:text-2xl sm:text-3xl lg:text-5xl">
           <span className="pr-2 inline-flex">Salut Fabien, je suis</span>
@@ -106,9 +106,9 @@ function Joindre() {
         </div>
         <button
           type="submit"
-          className="w-fit h-max bg-black hover:border-yellow-200 hover:text-yellow-200 hover:scale-105 transition-all text-white p-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
+          className="w-fit h-max text-base xs:text-lg sm:text-xl bg-black hover:border-yellow-200 hover:text-yellow-200 hover:scale-105 transition-all text-white p-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
         >
-          Envoyer
+          Envoyer un mail
         </button>
       </form>
     </section>

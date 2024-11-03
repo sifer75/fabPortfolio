@@ -19,11 +19,11 @@ const projects: {
     title: "YU-GI-OH",
     img: yugioh,
     description:
-      "Conçu pour me perfectionner dans le développement frontend. Ils’appuie sur une API pour simuler le backend, me permettant demettre en pratique des compétences telles que la gestion d’état, lesappels API, et les interactions utilisateur tout en explorant des technologies modernes du frontend.",
+      "Conçu pour me perfectionner dans le développement frontend. Il s'appuie sur une API pour simuler le backend, me permettant de mettre en pratique des compétences telles que la gestion d’état, les appels API, et les interactions utilisateur.",
     detail: {
       category: "Site vitrine",
       role: "Initiation au React avec api",
-      tag: ["React", "Css", "Express", "MongoDB"],
+      tag: ["React", "CSS", "Express", "MongoDB"],
     },
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
     gitHub: "https://github.com/sifer75/YU-GI-OH/tree/main/YU-GI-OH",
@@ -32,11 +32,11 @@ const projects: {
     title: "Kanban",
     img: kanban,
     description:
-      "Conçu pour me perfectionner dans le développement frontend. Ils’appuie sur une API pour simuler le backend, me permettant demettre en pratique des compétences telles que la gestion d’état, lesappels API, et les interactions utilisateur tout en explorant destechnologies modernes du frontend.",
+      "Je me suis entraîné à utiliser plusieurs technologies backend, notamment PostgreSQL et AdonisJS. J'ai appris à concevoir des bases de données efficaces avec SQL et à développer des applications robustes avec AdonisJS",
     detail: {
       category: "Gestionnaire de Tâches",
       role: "Application full Stack",
-      tag: ["React", "Tailwind", "AdoniJs", "Postgre"],
+      tag: ["React", "TailwindCSS", "AdonisJS", "PostgreSQL"],
     },
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
     gitHub: "https://github.com/sifer75/fun",
@@ -46,22 +46,20 @@ const projects: {
 function Portfolio() {
   return (
     <section
-      id="Portfolio"
       className="flex flex-grow h-fit w-full flex-col items-center gap-40 py-20 px-10"
+      id="Portfolio"
     >
-      {projects.map((project) => {
-        return (
-          <ProjetCard
-            key={project.title}
-            title={project.title}
-            description={project.description}
-            img={project.img}
-            detail={project.detail}
-            link={project.link}
-            gitHub={project.gitHub}
-          />
-        );
-      })}
+      {projects.map((project) => (
+        <ProjetCard
+          key={project.title}
+          title={project.title}
+          description={project.description}
+          img={project.img}
+          detail={project.detail}
+          link={project.link}
+          gitHub={project.gitHub}
+        />
+      ))}
     </section>
   );
 }

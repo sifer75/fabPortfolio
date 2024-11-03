@@ -79,17 +79,19 @@ export const ProjetCard = ({
         <div className="flex flex-col gap-5 justify-start h-full">
           <h1 className="font-Merich text-yellow-100 text-6xl">{title}</h1>
           <p className="font-Neue text-yellow-100 text-lg">{description}</p>
-          <div className="w-full flex items-center">
-            <div className="[&>p]:border-yellow-100 flex flex-col [&>p]:py-2 [&>p]:italic &>p]:font-Neue [&>p]:text-yellow-100">
-              <p className="border-t">Categorie: </p>
-              <p className="border-y">Role: </p>
-              <p className="border-b">Stack: </p>
-            </div>
-            <div className="flex flex-col [&>p]:py-2 [&>p]:pl-4 [&>p]:border-yellow-100 w-full [&>p]:font-Neue [&>p]:text-yellow-100 border-black">
-              <p className="border-t">{detail.category}</p>
-              <p className="border-y">{detail.role}</p>
-              <p className="border-b">{detail.tag.join(", ")}</p>
-            </div>
+          <div className="[&>p]:border-yellow-100 flex flex-col  xs:[&>p]:text-sm [&>p]:py-2 [&>p]:italic &>p]:font-Neue [&>p]:text-yellow-100 w-full">
+            <p className="border-t flex gap-6 items-center text-sm ">
+              <span className="sm:text-lg">Categorie:</span>
+              <span className="sm:text-lg">{detail.category}</span>
+            </p>
+            <p className="border-y flex gap-14 sm:gap-16 items-center text-lg">
+              <span className="sm:text-lg">Role:</span>
+              <span className="sm:text-lg">{detail.role}</span>
+            </p>
+            <p className="border-b flex gap-12 sm:gap-14 items-center">
+              <span className="sm:text-lg">Stack:</span>
+              <span className="text-lg">{detail.tag.join(", ")}</span>
+            </p>
           </div>
         </div>
         <Link
