@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 
-const ContactForm = () => {
+function Joindre() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,10 +19,10 @@ const ContactForm = () => {
 
     const subject = encodeURIComponent(`Contact de ${company}`);
     const body = encodeURIComponent(
-      `Salut Fabien, mon nom est ${name}.\n 
+      `Salut Fabien, je suis ${name}.\n 
         Je travaille actuellement dans l'entreprise ${location}.\n
         Notre siège se situe à ${company}.\n
-        Vous pouvez me joindre à l'adresse suivante: ${email}\n
+        Tu peux me joindre à cet email: ${email}\n
         ou par téléphone au ${phone}.\n`
     );
 
@@ -30,104 +30,87 @@ const ContactForm = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full h-full flex flex-col gap-5 flex-end justify-around items-center"
-    >
-      <div className="w-full h-full flex justify-start flex-wrap p-5 content-around text-yellow-300  font-Neue font-semibold text-4xl ">
-        <p className="min-w-fit h-fit px-2 flex items-center font-Neue">
-          Salut Fabien, mon nom est
-        </p>
-        <input
-          type="name"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          size={formData.name.length || 3}
-          maxLength={49}
-          placeholder="nom"
-          className="h-fit max-w-full px-2 effect-shine flex flex-wrap bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <span> .</span>
-        <p className="h-fit flex items-center px-2">
-          Je travaille actuellement dans l'entreprise
-        </p>
-        <input
-          type="text"
-          id="company"
-          name="company"
-          value={formData.company}
-          onChange={handleChange}
-          required
-          size={formData.company.length || 8}
-          placeholder="Entreprise"
-          className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <span> .</span>
-        <p className="h-fit flex items-center px-2">Notre siège se situe à </p>
-        <input
-          type="text"
-          id="location"
-          name="location"
-          value={formData.location}
-          onChange={handleChange}
-          required
-          size={formData.location.length || 4}
-          placeholder="Lieu"
-          className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <span> .</span>
-        <p className="h-fit flex items-center px-2">
-          Vous pouvez me joindre à l'adresse suivante
-        </p>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          size={formData.email.length || 4}
-          placeholder="Email"
-          className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-
-        <p className="h-fit flex items-center px-2">ou par téléphone au</p>
-        <input
-          type="phone"
-          id="phone"
-          name="phone"
-          value={formData.phone}
-          onChange={handleChange}
-          required
-          size={formData.phone.length || 8}
-          placeholder="téléphone"
-          className="h-fit max-w-full effect-shine px-2 flex items-center bg-transparent border-b focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <span> .</span>
-      </div>
-      <button
-        type="submit"
-        className="w-1/3 h-max bg-black hover:border-yellow-200 hover:text-yellow-200 hover:scale-105 transition-all text-white py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
+    <section id="Joindre" className="h-full w-full p-10">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-5 items-center"
       >
-        Envoyer
-      </button>
-    </form>
-  );
-};
-
-function Joindre() {
-  return (
-    <section
-      id="Joindre"
-      className="flex flex-grow min-h-screen h-screen w-full flex-col items-center justify-between py-24 pb-10 px-10"
-    >
-      <h1 className={`flex w-full text-8xl font-Merich text-yellow-100 pb-5`}>
-        Joindre
-      </h1>
-      <ContactForm />
+        <div className="[&>input]:pr-2 [&>input]:bg-transparent [&>input]:effect-shine text-yellow-300 font-Neue font-semibold text-xl xs:text-2xl sm:text-3xl lg:text-5xl">
+          <span className="pr-2 inline-flex">Salut Fabien, je suis</span>
+          <input
+            type="name"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            size={formData.name.length || 3}
+            maxLength={49}
+            placeholder="nom"
+            className="focus:outline-none"
+          ></input>
+          <span>. </span>
+          <span className="pr-2">
+            Je travaille actuellement dans l'entreprise
+          </span>
+          <input
+            type="text"
+            id="company"
+            name="company"
+            value={formData.company}
+            onChange={handleChange}
+            required
+            size={formData.company.length || 8}
+            placeholder="Entreprise"
+            className="focus:outline-none"
+          />
+          <span>. </span>
+          <span className="pr-2">Notre siège se situe à</span>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            value={formData.location}
+            onChange={handleChange}
+            required
+            size={formData.location.length || 3}
+            placeholder="Lieu"
+            className="focus:outline-none"
+          />
+          <span>. </span>
+          <span className="pr-2">Tu peux me joindre à cet email :</span>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            size={formData.email.length || 4}
+            placeholder="Email"
+            className="focus:outline-none"
+          />
+          <span className="pr-2">ou par téléphone au</span>
+          <input
+            type="phone"
+            id="phone"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            size={formData.phone.length || 8}
+            placeholder="téléphone"
+            className="focus:outline-none"
+          />
+          <span>. </span>
+        </div>
+        <button
+          type="submit"
+          className="w-fit h-max bg-black hover:border-yellow-200 hover:text-yellow-200 hover:scale-105 transition-all text-white p-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
+        >
+          Envoyer
+        </button>
+      </form>
     </section>
   );
 }

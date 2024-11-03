@@ -47,7 +47,7 @@ function Portfolio() {
   return (
     <section
       id="Portfolio"
-      className="flex flex-grow h-fit w-full flex-col items-center py-20 px-10"
+      className="flex flex-grow h-fit w-full flex-col items-center gap-40 py-20 px-10"
     >
       {projects.map((project) => {
         return (

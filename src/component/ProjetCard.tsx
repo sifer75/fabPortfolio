@@ -33,7 +33,7 @@ export const ProjetCard = ({
   }, []);
 
   return isLargeScreen < 1024 ? (
-    <div className="h-full w-full flex flex-col justify-between gap-10 py-16">
+    <div className="h-full w-full flex flex-col justify-between gap-10">
       <Link to={link} className="w-full h-full relative group">
         <img
           src={img}
@@ -45,7 +45,7 @@ export const ProjetCard = ({
         <h1 className="font-Merich text-yellow-100 text-4xl xs:text-5xl sm:text-6xl">
           {title}
         </h1>
-        <p className="font-Neue text-yellow-100 text-xs xs:text-sm sm:text-lg">
+        <p className="font-Neue text-yellow-100 text-sm sm:text-lg">
           {description}
         </p>
         <div className="[&>p]:border-yellow-100 flex flex-col  xs:[&>p]:text-sm [&>p]:py-2 [&>p]:italic &>p]:font-Neue [&>p]:text-yellow-100 w-full">

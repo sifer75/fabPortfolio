@@ -40,7 +40,7 @@ function Decription() {
   return (
     <section
       id="Description"
-      className=" h-fit w-full flex items-center px-10 py-24 justify-between"
+      className=" h-fit w-full flex items-center px-10 pt-20 lg:py-28 justify-between"
     >
       <p
         className="font-Neue text-yellow-300 text-xl xs:text-2xl sm:text-3xl lg:text-4xl w-full"
