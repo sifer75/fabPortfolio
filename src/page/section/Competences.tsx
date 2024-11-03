@@ -17,7 +17,7 @@ const Competences = () => {
           <h1 className="font-Merich text-yellow-100 text-4xl">Frontend</h1>
           {competencesFront.map(({ img, title }, index: number) => (
             <div
-              className="w-2/3 h-fit flex flex-col p-2 items-center justify-center bg-blue-500 rounded-xl border"
+              className="w-2/3 h-fit flex flex-col p-2 items-center justify-center gap-2"
               key={index}
             >
               <img
@@ -35,7 +35,7 @@ const Competences = () => {
           <h1 className="font-Merich text-yellow-100 text-4xl">Backend</h1>
           {competencesBack.map(({ img, title }, index: number) => (
             <div
-              className="w-2/3 h-fit flex flex-col p-2 items-center justify-center bg-blue-500 rounded-xl border "
+              className="w-2/3 h-fit flex flex-col p-2 items-center justify-center"
               key={index}
             >
               <img
@@ -53,7 +53,7 @@ const Competences = () => {
           <h1 className="font-Merich text-yellow-100 text-4xl">Database</h1>
           {dataBase.map(({ img, title }, index: number) => (
             <div
-              className="w-2/3 h-fit flex flex-col p-2 items-center justify-center bg-blue-500 rounded-xl border "
+              className="w-2/3 h-fit flex flex-col p-2 items-center justify-center"
               key={index}
             >
               <img

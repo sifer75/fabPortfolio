@@ -8,7 +8,7 @@ function FadingSkills() {
 
   useEffect(() => {
     function handleScroll() {
-      const { scrollY: currentScrollY, innerWidth } = window;
+      const { scrollY: currentScrollY } = window;
       const { current: stackNode } = stackRef;
       if (stackNode === null) return null;
       const texts = stackNode.children as HTMLCollectionOf<HTMLElement>;
@@ -17,24 +17,12 @@ function FadingSkills() {
         return;
       }
 
-      let fadeDelta;
-      let startOffset;
-
-      if (innerWidth >= 320 && innerWidth <= 500) {
-        fadeDelta = 500;
-        startOffset = 500;
-      } else {
-        fadeDelta = 200;
-        fadeDelta = 50;
-      }
-
       for (let i = 0; i < texts.length; i++) {
         const text = texts[i];
-        if (!startOffset) return;
-        const startFade = fadeDelta * i - startOffset;
+        const startFade = 200 * i - 100;
 
         const distance = currentScrollY - startFade;
-        const opacity = Math.max(0, 1 - distance / fadeDelta);
+        const opacity = Math.max(0, 1 - distance / 200);
 
         text.style.opacity = String(opacity);
       }
@@ -43,16 +31,14 @@ function FadingSkills() {
     const throttledHandleScroll = throttle(handleScroll, 16);
 
     document.addEventListener("scroll", throttledHandleScroll);
-
     handleScroll();
-
     return () => document.removeEventListener("scroll", throttledHandleScroll);
   }, []);
 
   return (
     <div className="flex h-fit max-w-full flex-col text-right z-10 items-center sm:items-end">
       <h2
-        className=" leading-[1] transition-opacity duration-500 font-Merich text-yellow-100"
+        className="leading-[1] transition-opacity duration-500 font-Merich text-yellow-100"
         ref={stackRef}
       >
         {stack.map((value, k) => (
