@@ -47,7 +47,7 @@ function Joindre() {
             size={formData.name.length || 3}
             maxLength={49}
             placeholder="nom"
-            className="focus:outline-none w-fit"
+            className="focus:outline-none w-max"
           ></input>
           <span>. </span>
           <span className="pr-2">
@@ -62,7 +62,7 @@ function Joindre() {
             required
             size={formData.company.length || 8}
             placeholder="Entreprise"
-            className="focus:outline-none  w-fit"
+            className="focus:outline-none  min-w-20"
           />
           <span>. </span>
           <span className="pr-2">Notre siège se situe à</span>
