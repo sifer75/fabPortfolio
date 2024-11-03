@@ -39,7 +39,7 @@ export const ProjetCard = ({
           src={img}
           className="h-full w-full hover:border-white transition-all hover:shadow-2xl object-cover rounded-xl border-2 border-black"
         ></img>
-        <MousePointerClick className="absolute top-5 group-hover:scale-125 transition-all left-5 w-10 h-10 text-white" />
+        <MousePointerClick className="absolute top-5 group-hover:scale-125 transition-all left-5 h-8 xs:h-10 sm:h-12 w-8 xs:w-10 sm:w-12 text-white" />
       </Link>
       <div className="flex flex-col gap-5">
         <h1 className="font-Merich text-yellow-100 text-4xl xs:text-5xl sm:text-6xl">
@@ -64,12 +64,12 @@ export const ProjetCard = ({
         </div>
         <Link
           to={gitHub}
-          className="flex text-merich group justify-center gap-2 items-center"
+          className="flex text-merich justify-center gap-2 items-center"
         >
-          <p className="text-yellow-100 text-2xl xs:text-3xl sm:text-4xl group-hover:scale-125 transition-all">
-            Github
+          <p className="text-yellow-100 text-2xl xs:text-3xl sm:text-4xl transition-all">
+            Voir le GitHub
           </p>
-          <MousePointerClick className="w-10 text-black h-10 group-hover:scale-125 transition-all group-hover:text-yellow-100" />
+          <MousePointerClick className="w-10 h-8 xs:h-10 sm:h-14 transition-all text-yellow-200" />
         </Link>
       </div>
     </div>
@@ -96,12 +96,12 @@ export const ProjetCard = ({
         </div>
         <Link
           to={gitHub}
-          className="w-fit flex text-merich group gap-5 items-center mt-4"
+          className="w-fit flex text-merich group gap-5 items-center mt-4 hover:scale-125"
         >
-          <p className="text-yellow-100 text-4xl group-hover:scale-125 transition-all">
-            Github
+          <p className="text-yellow-100 text-4xl transition-all">
+            Voir le gitHub
           </p>
-          <MousePointerClick className="w-14 text-black h-14 group-hover:scale-125 transition-all group-hover:text-yellow-100" />
+          <MousePointerClick className="w-14 text-yellow-200 h-12 group-hover:scale-125 transition-all" />
         </Link>
       </div>
       <Link to={link} className="w-1/2 h-full relative group">
@@ -109,7 +109,7 @@ export const ProjetCard = ({
           src={img}
           className="h-[402px] hover:border-white transition-all hover:shadow-2xl object-cover rounded-xl border-2 border-black"
         ></img>
-        <MousePointerClick className="absolute top-10 group-hover:scale-125 transition-all left-10 w-10 h-10 text-white" />
+        <MousePointerClick className="absolute top-10 group-hover:scale-125 transition-all left-10 w-12 h-12 text-white" />
       </Link>
     </div>
   );

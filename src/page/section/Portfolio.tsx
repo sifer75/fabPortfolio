@@ -22,7 +22,7 @@ const projects: {
       "Conçu pour me perfectionner dans le développement frontend. Il s'appuie sur une API pour simuler le backend, me permettant de mettre en pratique des compétences telles que la gestion d’état, les appels API, et les interactions utilisateur.",
     detail: {
       category: "Site vitrine",
-      role: "Initiation au React avec api",
+      role: "Initiation à React",
       tag: ["React", "CSS", "Express", "MongoDB"],
     },
     link: "https://yu-gi-oh-oh-oh.netlify.app/",

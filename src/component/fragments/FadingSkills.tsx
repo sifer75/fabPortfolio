@@ -41,21 +41,19 @@ function FadingSkills() {
   }, []);
 
   return (
-    <div className="flex h-fit max-w-full flex-col text-right z-10 items-center sm:items-end">
-      <h2
-        className=" leading-[1] transition-opacity duration-500 font-Merich text-yellow-100"
-        ref={stackRef}
-      >
-        {stack.map((value, k) => (
-          <span
-            className="block text-4xl xs:text-5xl sm:text-6xl lg:text-7xl"
-            key={k}
-          >
-            {value}
-          </span>
-        ))}
-      </h2>
-    </div>
+    <h2
+      className="leading-[1] transition-opacity z-10 duration-500 font-Merich text-yellow-100"
+      ref={stackRef}
+    >
+      {stack.map((value, k) => (
+        <span
+          className="block text-4xl xs:text-5xl sm:text-6xl lg:text-7xl"
+          key={k}
+        >
+          {value}
+        </span>
+      ))}
+    </h2>
   );
 }
 
