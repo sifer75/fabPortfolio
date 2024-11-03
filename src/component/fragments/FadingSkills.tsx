@@ -17,12 +17,15 @@ function FadingSkills() {
         return;
       }
 
+      const fadeDelta = 150;
+      const startOffset = 10;
+
       for (let i = 0; i < texts.length; i++) {
         const text = texts[i];
-        const startFade = 200 * i - 100;
+        const startFade = fadeDelta * i - startOffset;
 
         const distance = currentScrollY - startFade;
-        const opacity = Math.max(0, 1 - distance / 200);
+        const opacity = Math.max(0, 1 - distance / fadeDelta);
 
         text.style.opacity = String(opacity);
       }
@@ -31,14 +34,16 @@ function FadingSkills() {
     const throttledHandleScroll = throttle(handleScroll, 16);
 
     document.addEventListener("scroll", throttledHandleScroll);
+
     handleScroll();
+
     return () => document.removeEventListener("scroll", throttledHandleScroll);
   }, []);
 
   return (
     <div className="flex h-fit max-w-full flex-col text-right z-10 items-center sm:items-end">
       <h2
-        className="leading-[1] transition-opacity duration-500 font-Merich text-yellow-100"
+        className=" leading-[1] transition-opacity duration-500 font-Merich text-yellow-100"
         ref={stackRef}
       >
         {stack.map((value, k) => (
