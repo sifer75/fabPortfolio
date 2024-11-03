@@ -35,7 +35,7 @@ function Joindre() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-5 items-center"
       >
-        <div className="[&>input]:pr-2 [&>input]:bg-transparent [&>input]:w-fit [&>input]:effect-shine text-yellow-300 font-Neue font-semibold text-xl xs:text-2xl sm:text-3xl lg:text-5xl">
+        <div className="[&>input]:bg-transparent [&>input]:w-fit [&>input]:effect-shine text-yellow-300 font-Neue font-semibold text-xl xs:text-2xl sm:text-3xl lg:text-5xl">
           <span className="pr-2 inline-flex">Salut Fabien, je suis</span>
           <input
             type="name"
@@ -47,7 +47,7 @@ function Joindre() {
             size={formData.name.length || 3}
             maxLength={49}
             placeholder="nom"
-            className="focus:outline-none w-max"
+            className="focus:outline-none"
           ></input>
           <span>. </span>
           <span className="pr-2">
@@ -62,7 +62,7 @@ function Joindre() {
             required
             size={formData.company.length || 8}
             placeholder="Entreprise"
-            className="focus:outline-none  min-w-20"
+            className="focus:outline-none"
           />
           <span>. </span>
           <span className="pr-2">Notre siège se situe à</span>
