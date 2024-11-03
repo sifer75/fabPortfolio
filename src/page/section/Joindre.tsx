@@ -35,7 +35,7 @@ function Joindre() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-5 items-center"
       >
-        <div className="[&>input]:pr-2 [&>input]:bg-transparent [&>input]:effect-shine text-yellow-300 font-Neue font-semibold text-xl xs:text-2xl sm:text-3xl lg:text-5xl">
+        <div className="[&>input]:pr-2 [&>input]:bg-transparent [&>input]:w-fit [&>input]:effect-shine text-yellow-300 font-Neue font-semibold text-xl xs:text-2xl sm:text-3xl lg:text-5xl">
           <span className="pr-2 inline-flex">Salut Fabien, je suis</span>
           <input
             type="name"
