@@ -19,7 +19,7 @@ const Competences = () => {
             <h2 className="text-yellow-100 font-Merich text-3xl xs:text-4xl sm:text-5xl lg:text-3xl">
               {category}
             </h2>
-            <div className="w-full h-full font-Neue flex gap-5 items-center lg:items-start flex-col">
+            <div className="w-full h-full font-Neue flex gap-5 items-center  flex-col">
               {techList.map((tech: { img: string; title: string }) => (
                 <CompetencesCard
                   src={tech.img}
