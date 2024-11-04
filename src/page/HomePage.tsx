@@ -20,7 +20,7 @@ function HomePage() {
         <Competences />
         <Joindre />
       </div>
-      <div className="z-0 inset-0 absolute w-screen hidden lg:block">
+      <div className="z-0 inset-0 absolute w-screen  lg:block">
         <Icons />
       </div>
     </div>

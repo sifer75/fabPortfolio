@@ -1,6 +1,6 @@
 import yugioh from "../../assets/yugioh.png";
 import kanban from "../../assets/kanban.png";
-import ProjetCard from "../../component/ProjetCard";
+import { ProjetCard } from "../../component/ProjetCard";
 interface DetailProps {
   category: string;
   role: string;
@@ -13,7 +13,7 @@ const projects: {
   description: string;
   detail: DetailProps;
   link: string;
-  gitHub: string;
+  github: string;
 }[] = [
   {
     title: "YU-GI-OH",
@@ -26,7 +26,7 @@ const projects: {
       tag: ["React", "CSS", "Express", "MongoDB"],
     },
     link: "https://yu-gi-oh-oh-oh.netlify.app/",
-    gitHub: "https://github.com/sifer75/YU-GI-OH/tree/main/YU-GI-OH",
+    github: "https://github.com/sifer75/YU-GI-OH/tree/main/YU-GI-OH",
   },
   {
     title: "Kanban",
@@ -39,7 +39,7 @@ const projects: {
       tag: ["React", "TailwindCSS", "AdonisJS", "PostgreSQL"],
     },
     link: "",
-    gitHub: "https://github.com/sifer75/fun",
+    github: "https://github.com/sifer75/fun",
   },
 ];
 
@@ -57,7 +57,7 @@ function Portfolio() {
           img={project.img}
           detail={project.detail}
           link={project.link}
-          gitHub={project.gitHub}
+          github={project.github}
         />
       ))}
     </section>

@@ -17,8 +17,6 @@ function Decription() {
         stackNode.getBoundingClientRect().top + currentScrollY - innerHeight;
       const distanceScrolled = currentScrollY - sectionTop;
 
-      console.log(distanceScrolled, "ddd");
-
       for (let i = 0; i < texts.length; i++) {
         const text = texts[i];
         const offset = i * 16;

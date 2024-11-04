@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import Button from "../../component/Button";
 
 function Joindre() {
   const [formData, setFormData] = useState({
@@ -104,12 +105,12 @@ function Joindre() {
           />
           <span>. </span>
         </div>
-        <button
+        <Button
+          link=""
+          onClick={handleSubmit}
           type="submit"
-          className="w-fit h-max text-base xs:text-lg sm:text-xl bg-black hover:border-yellow-200 hover:text-yellow-200 hover:scale-105 transition-all text-white p-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 border border-white"
-        >
-          Envoyer un mail
-        </button>
+          title="Envoyer un mail"
+        />
       </form>
     </section>
   );
