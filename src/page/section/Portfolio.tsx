@@ -38,7 +38,7 @@ const projects: {
       role: "Application full Stack",
       tag: ["React", "TailwindCSS", "AdonisJS", "PostgreSQL"],
     },
-    link: "https://yu-gi-oh-oh-oh.netlify.app/",
+    link: "",
     gitHub: "https://github.com/sifer75/fun",
   },
 ];

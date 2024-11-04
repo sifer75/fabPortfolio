@@ -107,9 +107,17 @@ export const ProjetCard = ({
       <Link to={link} className="w-1/2 h-full relative group">
         <img
           src={img}
-          className="h-[402px] hover:border-white transition-all hover:shadow-2xl object-cover rounded-xl border-2 border-black"
+          className={`h-[402px] w-full hover:border-white transition-all hover:shadow-2xl border-2 border-black object-cover rounded-xl ${
+            title === "Kanban" ? "border-black rounded-xl blur-sm" : ""
+          }`}
         ></img>
-        <MousePointerClick className="absolute top-10 group-hover:scale-125 transition-all left-10 w-12 h-12 text-white" />
+        {title === "Kanban" ? (
+          <h2 className="absolute inset-0 flex items-center justify-center group-hover:scale-125 transition-all text-2xl left-10 text-black font-Merich">
+            Prochainement
+          </h2>
+        ) : (
+          <MousePointerClick className="absolute top-10 group-hover:scale-125 transition-all left-10 w-12 h-12 text-white" />
+        )}
       </Link>
     </div>
   );
