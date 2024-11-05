@@ -64,15 +64,6 @@ export const ProjetCard = ({
             <span className="sm:text-lg">{detail.tag.join(", ")}</span>
           </p>
         </div>
-        {/* <Link
-          to={github}
-          className="flex text-merich justify-center gap-2 items-center"
-        >
-          <p className="text-yellow-100 text-2xl xs:text-3xl sm:text-4xl transition-all">
-            Voir le Github
-          </p>
-          <MousePointerClick className="w-10 h-8 xs:h-10 sm:h-14 transition-all text-yellow-200" />
-        </Link> */}
         <Button title="Voir mon Github" link={github} type="button" />
       </div>
     </div>
@@ -97,14 +88,6 @@ export const ProjetCard = ({
             </p>
           </div>
         </div>
-        {/* <Link
-          to={github}
-          className="w-fit flex text-merich group gap-5 items-center mt-4 hover:scale-125"
-        >
-          <p className="text-yellow-100 text-4xl transition-all">
-            Voir le gitHub
-          </p>
-        </Link> */}
         <Button title="Voir mon Github" link={github} />
       </div>
       <Link to={link} className="w-1/2 h-full relative group">

@@ -15,7 +15,7 @@ const Button: React.FC<ButtonProps> = ({
   title,
 }) => (
   <button
-    className="px-6 py-3 bg-blue-800 lg:bg-blue-700 border-2 flex items-center hover:shadow-xl justify-center hover:scale-110 transition-all border-yellow-100 rounded-xl w-fit mt-5 mb-10"
+    className="px-5 py-2 bg-blue-800 lg:bg-blue-700 border-2 flex items-center hover:shadow-xl justify-center hover:scale-110 transition-all border-yellow-100 rounded-xl w-fit mt-5 mb-10"
     type={type}
     onClick={onClick}
   >

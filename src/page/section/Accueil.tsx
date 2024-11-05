@@ -8,11 +8,10 @@ function Accueil() {
   return (
     <section
       id="Accueil"
-      className="h-screen w-full flex flex-col items-end justify-between py-16 px-10"
+      className="h-screen w-full flex flex-col items-center sm:items-end justify-between py-16 px-10"
       ref={contentWrapperRef}
     >
       <MyHeadline />
-
       <FadingSkills />
     </section>
   );

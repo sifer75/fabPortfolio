@@ -1,4 +1,5 @@
 import CyclingSkills from "./fragments/CyclingSkills";
+import Links from "./Links";
 
 const me = ["Taupin", "Fabien"] as const;
 
@@ -11,8 +12,10 @@ const MyHeadline = () => (
         </div>
       ))}
     </h1>
-
     <CyclingSkills />
+    <div className="w-fit h-fit z-20 mt-5 sm:hidden">
+      <Links />
+    </div>
   </div>
 );
 
