@@ -1,23 +1,14 @@
-FROM node:22 AS build
-
+ARG NODE_VERSION=22-alpine
+FROM node:${NODE_VERSION} AS build
 WORKDIR /app
-
 COPY package*.json ./
-
-RUN npm install
-
+RUN npm install --production
 COPY . .
 
-RUN npm run build
-
-FROM node:22 AS production
-
+FROM node:${NODE_VERSION} AS production
 WORKDIR /app
-
-RUN npm install -g serve
-
-COPY --from=build /app/dist ./dist
-
+COPY --from=build /app .
+RUN adduser -D appuser
+USER appuser
 EXPOSE 80
-
-CMD ["serve", "-s", "dist", "-l", "80"]
+CMD ["npm", "start"]
