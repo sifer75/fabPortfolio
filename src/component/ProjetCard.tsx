@@ -35,13 +35,23 @@ export const ProjetCard = ({
 
   return isLargeScreen < 1024 ? (
     <div className="h-full w-full flex flex-col justify-between gap-10">
-      <Link to={link} className="w-full h-full relative group">
+      <Link to={link} className="w-full h-full relative group ">
         <img
           src={img}
           alt="link"
-          className="h-full w-full hover:border-yellow-100 transition-all hover:shadow-2xl object-cover rounded-xl border-2 border-black"
+          className={`h-full w-full hover:border-yellow-100 transition-all hover:shadow-2xl object-cover rounded-xl border-2 border-black flex items-center justify-center ${
+            title === "Kanban" || title === "YU-GI-OH"
+              ? "border-black rounded-xl blur-sm"
+              : ""
+          }`}
         ></img>
-        <MousePointerClick className="absolute top-5 group-hover:scale-125 transition-all left-5 h-8 xs:h-10 sm:h-12 w-8 xs:w-10 sm:w-12 text-white" />
+        {title === "Kanban" || title === "YU-GI-OH" ? (
+          <h2 className="absolute w-full inset-0 flex items-center justify-center group-hover:scale-125 transition-all text-2xl text-black font-Merich">
+            Prochainement
+          </h2>
+        ) : (
+          <MousePointerClick className="absolute top-5 group-hover:scale-125 transition-all left-5 h-8 xs:h-10 sm:h-12 w-8 xs:w-10 sm:w-12 text-white" />
+        )}
       </Link>
       <div className="flex flex-col gap-5">
         <h1 className="font-Merich text-yellow-100 text-4xl xs:text-5xl sm:text-6xl">
@@ -95,11 +105,13 @@ export const ProjetCard = ({
           src={img}
           alt="link"
           className={`h-[402px] w-full hover:border-white transition-all hover:shadow-2xl border-2 border-black object-cover rounded-xl ${
-            title === "Kanban" ? "border-black rounded-xl blur-sm" : ""
+            title === "Kanban" || title === "YU-GI-OH"
+              ? "border-black rounded-xl blur-sm"
+              : ""
           }`}
         ></img>
-        {title === "Kanban" ? (
-          <h2 className="absolute inset-0 flex items-center justify-center group-hover:scale-125 transition-all text-2xl left-10 text-black font-Merich">
+        {title === "Kanban" || title === "YU-GI-OH" ? (
+          <h2 className="absolute inset-0 flex items-center justify-center group-hover:scale-125 transition-all text-3xl left-10 text-black font-Merich">
             Prochainement
           </h2>
         ) : (

@@ -25,9 +25,10 @@ const projects: {
       role: "Initiation à React",
       tag: ["React", "CSS", "Express", "MongoDB"],
     },
-    link: "https://yu-gi-oh-oh-oh.netlify.app/",
+    link: "",
     github: "https://github.com/sifer75/YU-GI-OH/tree/main/YU-GI-OH",
   },
+  // https://yu-gi-oh-oh-oh.netlify.app/
   {
     title: "Kanban",
     img: kanban,
