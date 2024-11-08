@@ -19,7 +19,7 @@ function Menu() {
       }`}
     >
       <div
-        className={`transition-all hover:scale-125 relative duration-200 ease-in-out h-16 w-16 rounded-full aspect-square flex flex-col justify-center items-center`}
+        className={`transition-all hover:scale-110 relative duration-200 ease-in-out h-16 w-16 rounded-full aspect-square flex flex-col justify-center items-center`}
       >
         <div
           className={`rounded-full flex flex-col gap-1.5 items-center justify-center transition-all duration-100 ease-in-out`}
