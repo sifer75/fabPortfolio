@@ -15,11 +15,11 @@ function Menu() {
       className={`flex flex-col transition-all duration-700 overflow-hidden ease-in-out bg-white ${
         menuIsOpen
           ? "h-screen w-60"
-          : " h-16 w-16 rounded-[48px] ml-5 mt-4  hover:scale-110"
+          : " h-16 w-16 rounded-[48px] ml-5 mt-4 hover:scale-125 "
       }`}
     >
       <div
-        className={`transition-all hover:scale-110 relative ease-in-out h-16 w-16 rounded-full aspect-square flex flex-col justify-center items-center`}
+        className={`transition-all hover:scale-125 relative duration-200 ease-in-out h-16 w-16 rounded-full aspect-square flex flex-col justify-center items-center`}
       >
         <div
           className={`rounded-full flex flex-col gap-1.5 items-center justify-center transition-all duration-100 ease-in-out`}
@@ -56,13 +56,13 @@ function Menu() {
             key={index}
             onClick={() => setMenuIsOpen(false)}
             style={{
-              transitionDelay: `${menuIsOpen ? index * 150 : 0}ms`,
+              transitionDelay: `${menuIsOpen ? 200 + index * 150 : 0}ms`,
             }}
             className={`${
               menuIsOpen
                 ? "opacity-100"
                 : "opacity-0 -translate-x-full  hover:scale-110"
-            } border-2 rounded-xl p-2 ${border} hover:scale-110 hover:delay-0 transition-all`}
+            } border-2 rounded-xl p-2 ${border} hover:scale-110 hover:delay-0 duration-100 transition-all`}
           >
             {text}
           </a>
