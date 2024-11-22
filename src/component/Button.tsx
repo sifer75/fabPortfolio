@@ -1,5 +1,6 @@
 import { MousePointerClick } from "lucide-react";
 import { FormEvent } from "react";
+import { Link } from "react-router-dom";
 
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
@@ -20,13 +21,13 @@ const Button: React.FC<ButtonProps> = ({
     onClick={onClick}
   >
     {link ? (
-      <a
-        href={link}
+      <Link
+        to={link}
         className="font-Merich text-lg xs:text-xl lg:text-2xl text-yellow-100 flex gap-2 items-center"
       >
         {title}
         <MousePointerClick className="w-7 xs:w-8 lg:w-9 text-yellow-200 h-12 group-hover:scale-125 transition-all" />
-      </a>
+      </Link>
     ) : (
       <span className="font-Merich text-lg xs:text-xl lg:text-2xl text-yellow-100 flex gap-2 items-center">
         {title}
