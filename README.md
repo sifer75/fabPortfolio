@@ -1,30 +1,44 @@
-# React + TypeScript + Vite
+# 🌟 Mon Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenue sur mon portfolio ! Ce projet est une vitrine de mes compétences, expériences, et projets développés au fil du temps. Il est conçu pour présenter mon savoir-faire en développement web et mes contributions techniques.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎨 Fonctionnalités  
 
-## Expanding the ESLint configuration
+- **Présentation personnelle** :
+  - Une section qui détaille mon parcours, mes passions, et mes objectifs professionnels.
+  
+- **Projets réalisés** :
+  - Liste des projets les plus significatifs avec des descriptions, des liens démos et des aperçus.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Compétences techniques** :
+  - Présentation des technologies et outils maîtrisés (Frontend, Backend, DevOps).
 
-- Configure the top-level `parserOptions` property like this:
+- **Section Contact** :
+  - Formulaire de contact fonctionnel pour me joindre directement.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+- **Design responsive** :
+  - Optimisé pour les appareils mobiles, tablettes et ordinateurs.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+## 🛠️ Technologies Utilisées  
+
+- **Frontend** :
+  - React + TypeScript
+  - Tailwind CSS pour le design moderne et responsif.
+  - ShadCN pour les composants UI.
+
+- **Outils DevOps** :
+  - Déployé via Docker ou une plateforme cloud (par ex. Vercel, Netlify).
+
+---
+
+## 🚀 Installation Locale  
+
+### Étapes  
+
+1. Clonez le projet :  
+   git clone https://github.com/votre-utilisateur/portfolio.git
+   cd portfolio
